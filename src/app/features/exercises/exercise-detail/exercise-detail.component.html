@@ -1,0 +1,70 @@
+<div class="page">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <div *ngIf="errorMessage" class="error-box">
+    <p>{{ errorMessage }}</p>
+    <button class="btn-primary" (click)="goBack()">← Retour</button>
+  </div>
+
+  <div *ngIf="exercise && !isLoading" class="detail-container">
+
+    <!-- Header navigation -->
+    <div class="detail-header">
+      <button class="btn-back" (click)="goBack()">← Retour aux exercices</button>
+    </div>
+
+    <!-- Image 16:9 avec titre superposé -->
+    <div class="detail-image">
+      <app-exercise-icon
+        *ngIf="exercise"
+        [exerciseName]="exercise.name"
+        [category]="exercise.category"
+        size="large">
+      </app-exercise-icon>
+
+      <!-- Titre + badges superposés sur l'image -->
+      <div class="image-title-overlay">
+        <h1>{{ exercise.name }}</h1>
+        <div class="overlay-badges">
+          <span class="badge category">{{ categoryLabels[exercise.category] }}</span>
+          <span class="badge difficulty">{{ difficultyLabels[exercise.difficulty] }}</span>
+          <span class="badge muscle" *ngIf="exercise.muscleGroup">🎯 {{ exercise.muscleGroup }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infos -->
+    <div class="detail-body">
+
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Catégorie</span>
+          <span class="info-value">{{ categoryLabels[exercise.category] }}</span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Difficulté</span>
+          <span class="info-value">{{ difficultyLabels[exercise.difficulty] }}</span>
+        </div>
+        <div class="info-item" *ngIf="exercise.muscleGroup">
+          <span class="info-label">Groupe musculaire</span>
+          <span class="info-value">{{ exercise.muscleGroup }}</span>
+        </div>
+      </div>
+
+      <div class="description-section" *ngIf="exercise.description">
+        <h3>Description</h3>
+        <p>{{ exercise.description }}</p>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions">
+        <button class="btn-primary" routerLink="/workouts/create">
+          ➕ Ajouter à une séance
+        </button>
+        <button class="btn-outline" (click)="goBack()">← Retour</button>
+      </div>
+    </div>
+
+  </div>
+</div>

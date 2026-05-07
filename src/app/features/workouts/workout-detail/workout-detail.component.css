@@ -1,0 +1,59 @@
+.page { max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+.detail-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+
+.btn-back { background: none; border: none; color: #f5c518; font-size: 0.8rem; font-weight: 700; cursor: pointer; padding: 0; text-transform: uppercase; letter-spacing: 1px; }
+.btn-back:hover { text-shadow: 0 0 8px rgba(245,197,24,0.5); }
+
+.header-actions { display: flex; gap: 0.75rem; }
+
+.btn-danger { background: none; border: 1px solid rgba(245,197,24,0.3); color: #f5c518; padding: 0.4rem 0.9rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 700; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
+.btn-danger:hover { background: rgba(245,197,24,0.1); box-shadow: 0 0 10px rgba(245,197,24,0.2); }
+
+.workout-hero {
+  background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 16px;
+  padding: 2rem; margin-bottom: 1.5rem; position: relative; overflow: hidden;
+}
+.workout-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #f5c518, transparent); }
+.workout-hero::after { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: radial-gradient(circle, rgba(245,197,24,0.08) 0%, transparent 70%); pointer-events: none; }
+
+.workout-hero h1 { font-size: 1.75rem; font-weight: 800; color: #f0f0f0; margin: 0 0 0.5rem; letter-spacing: 0.5px; }
+.workout-date { color: #555; margin: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+
+.stats-row { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+
+.stat-item { background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 10px; padding: 1rem 1.5rem; display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 100px; transition: border-color 0.2s; }
+.stat-item:hover { border-color: rgba(245,197,24,0.2); }
+.stat-icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+.stat-value { font-size: 1.5rem; font-weight: 800; color: #f5c518; line-height: 1; text-shadow: 0 0 15px rgba(245,197,24,0.3); }
+.stat-label { font-size: 0.65rem; color: #555; margin-top: 0.2rem; text-transform: uppercase; letter-spacing: 1px; }
+
+.notes-section { background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem; }
+.notes-section h3 { font-size: 0.65rem; color: #555; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 0.75rem; }
+.notes-section p { color: #aaa; margin: 0; line-height: 1.6; }
+
+.exercises-section { background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 12px; padding: 1.25rem; }
+.exercises-section h3 { font-size: 0.65rem; color: #555; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 1rem; }
+
+.exercises-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.exercise-item { display: flex; align-items: center; gap: 1rem; padding: 0.875rem; background: #141414; border: 1px solid #1e1e1e; border-radius: 8px; transition: border-color 0.2s; }
+.exercise-item:hover { border-color: rgba(245,197,24,0.2); }
+
+.exercise-number { width: 32px; height: 32px; background: #f5c518; color: #080808; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; flex-shrink: 0; }
+
+.exercise-info { flex: 1; }
+.exercise-info h4 { margin: 0 0 0.2rem; font-size: 0.95rem; color: #f0f0f0; font-weight: 600; }
+.exercise-info p { margin: 0; font-size: 0.75rem; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.exercise-sets { display: flex; align-items: center; gap: 0.5rem; }
+
+.set-badge { text-align: center; background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 6px; padding: 0.4rem 0.75rem; }
+.set-value { display: block; font-size: 1.1rem; font-weight: 800; color: #f5c518; }
+.set-label { display: block; font-size: 0.6rem; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+.set-separator { font-size: 1.2rem; color: #333; font-weight: 300; }
+
+.empty { color: #555; text-align: center; padding: 1.5rem; }
+.error-box { text-align: center; padding: 3rem; color: #f5c518; }
+
+.btn-primary { background: #f5c518; color: #080808; padding: 0.6rem 1.25rem; border-radius: 8px; border: none; font-size: 0.8rem; font-weight: 800; cursor: pointer; text-decoration: none; display: inline-block; text-transform: uppercase; letter-spacing: 1px; }

@@ -1,0 +1,83 @@
+<div class="page">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <div *ngIf="errorMessage" class="error-box">
+    <p>{{ errorMessage }}</p>
+    <button class="btn-primary" routerLink="/workouts">← Retour aux séances</button>
+  </div>
+
+  <div *ngIf="workout && !isLoading">
+
+    <!-- Header -->
+    <div class="detail-header">
+      <button class="btn-back" routerLink="/workouts">← Retour</button>
+      <div class="header-actions">
+        <button class="btn-danger" (click)="deleteWorkout()">🗑️ Supprimer</button>
+      </div>
+    </div>
+
+    <!-- Titre et date -->
+    <div class="workout-hero">
+      <h1>{{ workout.title }}</h1>
+      <p class="workout-date">📅 {{ workout.workoutDate | date:'EEEE dd MMMM yyyy' }}</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-item" *ngIf="workout.duration">
+        <span class="stat-icon">⏱️</span>
+        <span class="stat-value">{{ workout.duration }}</span>
+        <span class="stat-label">minutes</span>
+      </div>
+      <div class="stat-item" *ngIf="workout.totalCalories">
+        <span class="stat-icon">🔥</span>
+        <span class="stat-value">{{ workout.totalCalories }}</span>
+        <span class="stat-label">calories</span>
+      </div>
+      <div class="stat-item" *ngIf="workout.exercises?.length">
+        <span class="stat-icon">🏋️</span>
+        <span class="stat-value">{{ workout.exercises!.length }}</span>
+        <span class="stat-label">exercices</span>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="notes-section" *ngIf="workout.notes">
+      <h3>📝 Notes</h3>
+      <p>{{ workout.notes }}</p>
+    </div>
+
+    <!-- Exercices -->
+    <div class="exercises-section">
+      <h3>🏋️ Exercices de la séance</h3>
+
+      <div *ngIf="!workout.exercises || workout.exercises.length === 0" class="empty">
+        Aucun exercice enregistré.
+      </div>
+
+      <div class="exercises-list" *ngIf="workout.exercises && workout.exercises.length > 0">
+        <div class="exercise-item" *ngFor="let ex of workout.exercises; let i = index">
+          <div class="exercise-number">{{ i + 1 }}</div>
+          <div class="exercise-info">
+            <!-- Le backend renvoie exerciseName directement dans WorkoutExerciseResponse -->
+            <h4>{{ ex.exerciseName }}</h4>
+            <p *ngIf="ex.category">🎯 {{ ex.category }}</p>
+          </div>
+          <div class="exercise-sets">
+            <div class="set-badge">
+              <span class="set-value">{{ ex.sets }}</span>
+              <span class="set-label">séries</span>
+            </div>
+            <span class="set-separator">×</span>
+            <div class="set-badge">
+              <span class="set-value">{{ ex.reps }}</span>
+              <span class="set-label">reps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

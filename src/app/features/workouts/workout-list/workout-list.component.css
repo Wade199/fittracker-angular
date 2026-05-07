@@ -1,0 +1,49 @@
+.page { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+.page-header h1 { font-size: 1.75rem; font-weight: 800; color: #f0f0f0; margin: 0 0 0.25rem; letter-spacing: 1px; }
+.page-header p { color: #555; margin: 0; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+.workout-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.workout-card {
+  background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 12px;
+  padding: 1.25rem; display: flex; align-items: center; gap: 1.25rem;
+  text-decoration: none; color: inherit; transition: all 0.2s;
+}
+.workout-card:hover { border-color: rgba(245,197,24,0.3); box-shadow: 0 0 20px rgba(245,197,24,0.06); }
+
+.workout-date-badge {
+  background: #f5c518; color: #080808;
+  border-radius: 8px; padding: 0.75rem;
+  text-align: center; min-width: 52px; flex-shrink: 0;
+}
+.workout-date-badge .day { display: block; font-size: 1.5rem; font-weight: 800; line-height: 1; }
+.workout-date-badge .month { display: block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+
+.workout-info { flex: 1; }
+.workout-info h3 { margin: 0 0 0.4rem; font-size: 1rem; color: #f0f0f0; font-weight: 600; }
+.workout-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: #777; flex-wrap: wrap; }
+.workout-notes { margin: 0.4rem 0 0; font-size: 0.8rem; color: #555; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.workout-actions { display: flex; gap: 0.5rem; align-items: center; flex-shrink: 0; }
+
+.btn-outline { border: 1px solid rgba(245,197,24,0.4); color: #f5c518; padding: 0.4rem 0.9rem; border-radius: 6px; text-decoration: none; font-size: 0.75rem; font-weight: 700; transition: all 0.2s; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; }
+.btn-outline:hover { background: #f5c518; color: #080808; box-shadow: 0 0 12px rgba(245,197,24,0.3); }
+
+.btn-delete { background: none; border: 1px solid #2a2a2a; border-radius: 6px; padding: 0.4rem 0.6rem; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+.btn-delete:hover { border-color: rgba(245,197,24,0.3); background: rgba(245,197,24,0.05); }
+
+.btn-primary { background: #f5c518; color: #080808; padding: 0.6rem 1.25rem; border-radius: 8px; text-decoration: none; font-size: 0.8rem; font-weight: 800; border: none; cursor: pointer; transition: all 0.2s; display: inline-block; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 0 15px rgba(245,197,24,0.2); }
+.btn-primary:hover { background: #ffe033; box-shadow: 0 0 25px rgba(245,197,24,0.35); }
+
+.empty-state { text-align: center; padding: 4rem 2rem; background: #0f0f0f; border-radius: 12px; border: 1px dashed #2a2a2a; }
+.empty-state span { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
+.empty-state p { color: #555; margin-bottom: 1.5rem; font-size: 1rem; }
+
+.error-box { background: rgba(245,197,24,0.06); border: 1px solid rgba(245,197,24,0.2); color: #f5c518; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
+
+@media (max-width: 600px) {
+  .workout-card { flex-wrap: wrap; }
+  .workout-actions { width: 100%; justify-content: flex-end; }
+}

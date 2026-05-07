@@ -1,0 +1,119 @@
+<div class="dashboard">
+
+  <!-- Hero Banner Street Workout -->
+  <div class="hero-banner">
+    <div class="hero-text">
+      <h1>{{ getGreeting() }}, {{ currentUser?.firstName || currentUser?.username }} 💪</h1>
+      <p>Prêt pour ta prochaine séance ?</p>
+      <a routerLink="/workouts/create" class="btn-hero">+ Nouvelle séance</a>
+    </div>
+    <div class="hero-illustration">
+      <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="figGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#e94560;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#ff6b6b;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <!-- Barre -->
+        <rect x="20" y="30" width="260" height="10" rx="5" fill="rgba(255,255,255,0.3)"/>
+        <!-- Personnage 1 — pull-up -->
+        <circle cx="90" cy="60" r="14" fill="url(#figGrad)"/>
+        <rect x="82" y="74" width="16" height="40" rx="6" fill="url(#figGrad)"/>
+        <rect x="68" y="40" width="10" height="40" rx="5" fill="url(#figGrad)" transform="rotate(-20 73 60)"/>
+        <rect x="102" y="40" width="10" height="40" rx="5" fill="url(#figGrad)" transform="rotate(20 107 60)"/>
+        <rect x="78" y="112" width="12" height="35" rx="6" fill="url(#figGrad)" transform="rotate(8 84 130)"/>
+        <rect x="94" y="112" width="12" height="35" rx="6" fill="url(#figGrad)" transform="rotate(-8 100 130)"/>
+        <!-- Personnage 2 — muscle-up -->
+        <circle cx="210" cy="55" r="14" fill="url(#figGrad)"/>
+        <rect x="202" y="69" width="16" height="40" rx="6" fill="url(#figGrad)"/>
+        <rect x="188" y="35" width="10" height="40" rx="5" fill="url(#figGrad)" transform="rotate(-25 193 55)"/>
+        <rect x="222" y="35" width="10" height="40" rx="5" fill="url(#figGrad)" transform="rotate(25 227 55)"/>
+        <rect x="198" y="107" width="12" height="35" rx="6" fill="url(#figGrad)" transform="rotate(5 204 125)"/>
+        <rect x="214" y="107" width="12" height="35" rx="6" fill="url(#figGrad)" transform="rotate(-5 220 125)"/>
+        <!-- Éléments déco -->
+        <circle cx="150" cy="170" r="30" fill="rgba(255,255,255,0.05)"/>
+        <circle cx="50" cy="160" r="20" fill="rgba(255,255,255,0.04)"/>
+        <circle cx="260" cy="155" r="25" fill="rgba(255,255,255,0.04)"/>
+        <!-- Étoiles / particules -->
+        <circle cx="30" cy="80" r="3" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="270" cy="100" r="2" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="150" cy="20" r="2.5" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="180" cy="170" r="2" fill="rgba(255,255,255,0.25)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <ng-container *ngIf="!isLoading">
+
+    <!-- Statistiques -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🏋️</div>
+        <div class="stat-value">{{ stats.totalWorkouts }}</div>
+        <div class="stat-label">Séances totales</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-value">{{ stats.thisWeek }}</div>
+        <div class="stat-label">Cette semaine</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-value">{{ stats.totalMinutes }}</div>
+        <div class="stat-label">Minutes d'entraînement</div>
+      </div>
+    </div>
+
+    <!-- Dernières séances -->
+    <div class="section">
+      <div class="section-header">
+        <h2>Dernières séances</h2>
+        <a routerLink="/workouts" class="link-more">Voir tout →</a>
+      </div>
+
+      <div *ngIf="recentWorkouts.length === 0" class="empty-state">
+        <span>🏃</span>
+        <p>Aucune séance enregistrée.</p>
+        <a routerLink="/workouts/create" class="btn-primary">Créer ma première séance</a>
+      </div>
+
+      <div class="workout-list" *ngIf="recentWorkouts.length > 0">
+        <div class="workout-card" *ngFor="let workout of recentWorkouts">
+          <div class="workout-info">
+            <h3>{{ workout.title }}</h3>
+            <span class="workout-date">📅 {{ workout.workoutDate | date:'dd/MM/yyyy' }}</span>
+          </div>
+          <div class="workout-meta">
+            <span *ngIf="workout.duration">⏱️ {{ workout.duration }} min</span>
+            <span *ngIf="workout.totalCalories">🔥 {{ workout.totalCalories }} kcal</span>
+          </div>
+          <a [routerLink]="['/workouts', workout.id]" class="btn-outline">Voir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Raccourcis -->
+    <div class="section">
+      <h2>Accès rapide</h2>
+      <div class="shortcuts-grid">
+        <a routerLink="/exercises" class="shortcut-card">
+          <span>🏋️</span>
+          <p>Exercices</p>
+        </a>
+        <a routerLink="/workouts/create" class="shortcut-card">
+          <span>➕</span>
+          <p>Nouvelle séance</p>
+        </a>
+        <a routerLink="/progress" class="shortcut-card">
+          <span>📈</span>
+          <p>Mes progrès</p>
+        </a>
+      </div>
+    </div>
+
+  </ng-container>
+</div>

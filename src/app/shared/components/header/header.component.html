@@ -1,0 +1,45 @@
+<header class="header">
+  <div class="header-container">
+    <!-- Logo -->
+    <a routerLink="/dashboard" class="logo">
+      <span class="logo-icon">💪</span>
+      <span class="logo-text">FitTracker</span>
+    </a>
+
+    <!-- Navigation desktop -->
+    <nav class="nav-desktop" *ngIf="currentUser">
+      <a routerLink="/dashboard" class="nav-link" [class.active]="isActive('/dashboard')">
+        🏠 Dashboard
+      </a>
+      <a routerLink="/exercises" class="nav-link" [class.active]="isActive('/exercises')">
+        🏋️ Exercices
+      </a>
+      <a routerLink="/workouts" class="nav-link" [class.active]="isActive('/workouts')">
+        📋 Séances
+      </a>
+      <a routerLink="/progress" class="nav-link" [class.active]="isActive('/progress')">
+        📈 Progrès
+      </a>
+    </nav>
+
+    <!-- Utilisateur connecté -->
+    <div class="header-right" *ngIf="currentUser">
+      <span class="user-name">{{ currentUser.firstName || currentUser.username }}</span>
+      <button class="btn-logout" (click)="logout()">Déconnexion</button>
+    </div>
+
+    <!-- Bouton menu mobile -->
+    <button class="menu-toggle" (click)="toggleMenu()" *ngIf="currentUser">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Navigation mobile -->
+  <nav class="nav-mobile" [class.open]="menuOpen" *ngIf="currentUser">
+    <a routerLink="/dashboard" class="nav-link" (click)="menuOpen = false">🏠 Dashboard</a>
+    <a routerLink="/exercises" class="nav-link" (click)="menuOpen = false">🏋️ Exercices</a>
+    <a routerLink="/workouts" class="nav-link" (click)="menuOpen = false">📋 Séances</a>
+    <a routerLink="/progress" class="nav-link" (click)="menuOpen = false">📈 Progrès</a>
+    <button class="btn-logout" (click)="logout()">Déconnexion</button>
+  </nav>
+</header>

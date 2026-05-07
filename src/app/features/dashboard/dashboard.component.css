@@ -1,0 +1,246 @@
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ── Hero Banner ── */
+.hero-banner {
+  background: #0f0f0f;
+  border: 1px solid #1e1e1e;
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Grille futuriste */
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,197,24,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,197,24,0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+
+/* Halo jaune */
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245,197,24,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Ligne jaune en haut */
+.hero-banner .hero-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f5c518, transparent);
+}
+
+.hero-text { flex: 1; z-index: 1; }
+
+.hero-text h1 {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #f0f0f0;
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.hero-text p { color: #555; margin: 0 0 1.5rem; font-size: 0.95rem; }
+
+.btn-hero {
+  display: inline-block;
+  background: #f5c518;
+  color: #080808;
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.2s;
+  box-shadow: 0 0 20px rgba(245,197,24,0.25);
+}
+
+.btn-hero:hover {
+  background: #ffe033;
+  box-shadow: 0 0 35px rgba(245,197,24,0.45);
+  transform: translateY(-2px);
+}
+
+.hero-illustration { width: 280px; flex-shrink: 0; opacity: 0.9; z-index: 1; }
+.hero-illustration svg { width: 100%; height: auto; }
+
+/* ── Stats ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background: #0f0f0f;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f5c518, transparent);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.stat-card:hover { border-color: rgba(245,197,24,0.3); box-shadow: 0 0 20px rgba(245,197,24,0.08); }
+.stat-card:hover::before { transform: scaleX(1); }
+
+.stat-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+
+.stat-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #f5c518;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 0 20px rgba(245,197,24,0.3);
+}
+
+.stat-label { font-size: 0.8rem; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ── Section ── */
+.section { margin-bottom: 2.5rem; }
+
+.section-header {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;
+}
+
+.section h2 {
+  font-size: 1rem; font-weight: 700; color: #888;
+  margin: 0 0 1rem; text-transform: uppercase; letter-spacing: 2px;
+}
+
+.section-header h2 { margin: 0; }
+
+.link-more { color: #f5c518; text-decoration: none; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.link-more:hover { text-shadow: 0 0 8px rgba(245,197,24,0.5); }
+
+/* ── Workout list ── */
+.workout-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.workout-card {
+  background: #0f0f0f;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.2s;
+}
+
+.workout-card:hover {
+  border-color: rgba(245,197,24,0.3);
+  box-shadow: 0 0 15px rgba(245,197,24,0.06);
+}
+
+.workout-info { flex: 1; }
+.workout-info h3 { margin: 0 0 0.25rem; font-size: 1rem; color: #f0f0f0; font-weight: 600; }
+.workout-date { font-size: 0.8rem; color: #555; }
+.workout-meta { display: flex; gap: 1rem; font-size: 0.85rem; color: #777; }
+
+/* ── Empty state ── */
+.empty-state {
+  text-align: center; padding: 3rem;
+  background: #0f0f0f; border-radius: 12px;
+  border: 1px dashed #2a2a2a;
+}
+.empty-state span { font-size: 3rem; display: block; margin-bottom: 0.75rem; }
+.empty-state p { color: #555; margin-bottom: 1.25rem; }
+
+/* ── Shortcuts ── */
+.shortcuts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+.shortcut-card {
+  background: #0f0f0f;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.shortcut-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f5c518, transparent);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+
+.shortcut-card:hover {
+  border-color: rgba(245,197,24,0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(245,197,24,0.1);
+}
+
+.shortcut-card:hover::after { transform: scaleX(1); }
+
+.shortcut-card span { font-size: 2rem; display: block; margin-bottom: 0.5rem; }
+.shortcut-card p { margin: 0; color: #888; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* ── Buttons ── */
+.btn-primary {
+  background: #f5c518; color: #080808;
+  padding: 0.6rem 1.25rem; border-radius: 8px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 800;
+  border: none; cursor: pointer; transition: all 0.2s;
+  display: inline-block; text-transform: uppercase; letter-spacing: 1px;
+  box-shadow: 0 0 15px rgba(245,197,24,0.2);
+}
+.btn-primary:hover { background: #ffe033; box-shadow: 0 0 25px rgba(245,197,24,0.35); }
+
+.btn-outline {
+  border: 1px solid rgba(245,197,24,0.4); color: #f5c518;
+  padding: 0.4rem 0.9rem; border-radius: 6px;
+  text-decoration: none; font-size: 0.8rem; font-weight: 700;
+  transition: all 0.2s; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.btn-outline:hover { background: #f5c518; color: #080808; box-shadow: 0 0 15px rgba(245,197,24,0.3); }
+
+@media (max-width: 768px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .shortcuts-grid { grid-template-columns: 1fr 1fr; }
+  .workout-card { flex-wrap: wrap; }
+  .hero-banner { flex-direction: column; padding: 2rem; text-align: center; }
+  .hero-illustration { width: 200px; margin-top: 1rem; }
+  .hero-text h1 { font-size: 1.4rem; }
+}

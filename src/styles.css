@@ -1,1 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
+/* =============================================
+   THÈME FUTURISTE — NOIR / JAUNE NÉON
+   FitTracker Street Workout
+   ============================================= */
+
+:root {
+  /* Couleurs principales */
+  --bg-base:       #080808;
+  --bg-surface:    #0f0f0f;
+  --bg-card:       #141414;
+  --bg-elevated:   #1c1c1c;
+  --border:        #1e1e1e;
+  --border-accent: #f5c518;
+
+  /* Jaune néon */
+  --yellow:        #f5c518;
+  --yellow-bright: #ffe033;
+  --yellow-dim:    #c9a010;
+  --yellow-glow:   rgba(245, 197, 24, 0.18);
+  --yellow-glow-sm:rgba(245, 197, 24, 0.08);
+
+  /* Texte */
+  --text-primary:  #f0f0f0;
+  --text-secondary:#aaaaaa;
+  --text-muted:    #555555;
+
+  /* Effets */
+  --shadow-yellow: 0 0 20px rgba(245,197,24,0.25), 0 0 60px rgba(245,197,24,0.08);
+  --shadow-card:   0 4px 30px rgba(0,0,0,0.6);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ── Éléments natifs en sombre ── */
+input, select, textarea, button {
+  font-family: inherit;
+  color-scheme: dark;
+}
+
+input:not([type="submit"]):not([type="button"]):not([type="reset"]),
+select, textarea {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+option {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+/* ── Scrollbar jaune ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb { background: var(--yellow-dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--yellow); }
+
+/* ── Sélection ── */
+::selection { background: rgba(245,197,24,0.3); color: #fff; }

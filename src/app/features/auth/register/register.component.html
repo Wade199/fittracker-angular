@@ -1,0 +1,76 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <span>💪</span>
+      <h1>FitTracker</h1>
+      <p>Créez votre compte gratuitement</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+
+      <!-- Prénom / Nom -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">Prénom</label>
+          <input id="firstName" type="text" [(ngModel)]="formData.firstName"
+            name="firstName" placeholder="Jean" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="lastName">Nom</label>
+          <input id="lastName" type="text" [(ngModel)]="formData.lastName"
+            name="lastName" placeholder="Dupont" class="form-control" />
+        </div>
+      </div>
+
+      <!-- Username -->
+      <div class="form-group">
+        <label for="username">Nom d'utilisateur <span class="required">*</span></label>
+        <input id="username" type="text" [(ngModel)]="formData.username"
+          name="username" placeholder="jeandupont" required class="form-control" />
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email <span class="required">*</span></label>
+        <input id="email" type="email" [(ngModel)]="formData.email"
+          name="email" placeholder="votre@email.com" required class="form-control" />
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="form-group">
+        <label for="password">Mot de passe <span class="required">*</span></label>
+        <div class="input-with-icon">
+          <input id="password" [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="formData.password" name="password"
+            placeholder="Min. 6 caractères" required class="form-control" />
+          <button type="button" class="toggle-password" (click)="showPassword = !showPassword">
+            {{ showPassword ? '🙈' : '👁️' }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Confirmation mot de passe -->
+      <div class="form-group">
+        <label for="confirmPassword">Confirmer le mot de passe <span class="required">*</span></label>
+        <input id="confirmPassword" [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="confirmPassword" name="confirmPassword"
+          placeholder="••••••••" required class="form-control" />
+      </div>
+
+      <!-- Erreur -->
+      <div class="error-message" *ngIf="errorMessage">
+        ⚠️ {{ errorMessage }}
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Créer mon compte</span>
+        <span *ngIf="isLoading">Inscription...</span>
+      </button>
+    </form>
+
+    <p class="auth-link">
+      Déjà un compte ?
+      <a routerLink="/login">Se connecter</a>
+    </p>
+  </div>
+</div>

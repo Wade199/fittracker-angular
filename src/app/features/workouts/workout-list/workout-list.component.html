@@ -1,0 +1,60 @@
+<div class="page">
+
+  <!-- En-tête -->
+  <div class="page-header">
+    <div>
+      <h1>📋 Mes séances</h1>
+      <p>{{ workouts.length }} séance(s) enregistrée(s)</p>
+    </div>
+    <a routerLink="/workouts/create" class="btn-primary">+ Nouvelle séance</a>
+  </div>
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <div *ngIf="errorMessage" class="error-box">{{ errorMessage }}</div>
+
+  <ng-container *ngIf="!isLoading">
+
+    <!-- Liste vide -->
+    <div *ngIf="workouts.length === 0" class="empty-state">
+      <span>🏃</span>
+      <p>Aucune séance enregistrée pour l'instant.</p>
+      <a routerLink="/workouts/create" class="btn-primary">Créer ma première séance</a>
+    </div>
+
+    <!-- Liste des séances -->
+    <div class="workout-list" *ngIf="workouts.length > 0">
+      <a
+        *ngFor="let workout of workouts"
+        [routerLink]="['/workouts', workout.id]"
+        class="workout-card"
+      >
+        <!-- Date -->
+        <div class="workout-date-badge">
+          <span class="day">{{ workout.workoutDate | date:'dd' }}</span>
+          <span class="month">{{ workout.workoutDate | date:'MMM' }}</span>
+        </div>
+
+        <!-- Infos -->
+        <div class="workout-info">
+          <h3>{{ workout.title }}</h3>
+          <div class="workout-meta">
+            <span *ngIf="workout.duration">⏱️ {{ workout.duration }} min</span>
+            <span *ngIf="workout.totalCalories">🔥 {{ workout.totalCalories }} kcal</span>
+            <span *ngIf="workout.exercises?.length">
+              🏋️ {{ workout.exercises!.length }} exercice(s)
+            </span>
+          </div>
+          <p class="workout-notes" *ngIf="workout.notes">{{ workout.notes }}</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="workout-actions">
+          <a [routerLink]="['/workouts', workout.id]" class="btn-outline">Voir</a>
+          <button class="btn-delete" (click)="deleteWorkout(workout.id!, $event)">🗑️</button>
+        </div>
+      </a>
+    </div>
+
+  </ng-container>
+</div>

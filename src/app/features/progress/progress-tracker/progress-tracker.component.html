@@ -1,0 +1,113 @@
+<div class="page">
+
+  <!-- En-tête -->
+  <div class="page-header">
+    <div>
+      <h1>📈 Mes progrès</h1>
+      <p>Suivez l'évolution de votre poids</p>
+    </div>
+    <button class="btn-primary" (click)="showForm = !showForm">
+      {{ showForm ? '✕ Annuler' : '+ Ajouter une entrée' }}
+    </button>
+  </div>
+
+  <!-- Formulaire ajout -->
+  <div class="form-card" *ngIf="showForm">
+    <h3>Nouvelle entrée</h3>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Date <span class="required">*</span></label>
+          <input type="date" [(ngModel)]="newEntry.progressDate" name="progressDate"
+            required class="form-control" />
+        </div>
+        <div class="form-group">
+          <label>Poids (kg)</label>
+          <input type="number" [(ngModel)]="newEntry.weight" name="weight"
+            placeholder="70.5" step="0.1" min="20" max="300" class="form-control" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Notes</label>
+        <textarea [(ngModel)]="newEntry.notes" name="notes"
+          placeholder="Observations..." rows="2" class="form-control"></textarea>
+      </div>
+      <div class="error-message" *ngIf="errorMessage">⚠️ {{ errorMessage }}</div>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Enregistrement...' : 'Enregistrer' }}
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Message succès -->
+  <div class="success-message" *ngIf="successMessage">✅ {{ successMessage }}</div>
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <ng-container *ngIf="!isLoading">
+
+    <!-- Stats rapides -->
+    <div class="stats-grid" *ngIf="progressList.length > 0">
+      <div class="stat-card">
+        <div class="stat-icon">⚖️</div>
+        <div class="stat-value">{{ latestWeight || '—' }}</div>
+        <div class="stat-label">Poids actuel (kg)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📉</div>
+        <div class="stat-value">{{ minWeight || '—' }}</div>
+        <div class="stat-label">Poids minimum (kg)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📈</div>
+        <div class="stat-value">{{ maxWeight || '—' }}</div>
+        <div class="stat-label">Poids maximum (kg)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-value">{{ progressList.length }}</div>
+        <div class="stat-label">Entrées enregistrées</div>
+      </div>
+    </div>
+
+    <!-- Liste vide -->
+    <div *ngIf="progressList.length === 0" class="empty-state">
+      <span>📊</span>
+      <p>Aucune donnée de progression enregistrée.</p>
+      <button class="btn-primary" (click)="showForm = true">Ajouter ma première entrée</button>
+    </div>
+
+    <!-- Tableau des entrées -->
+    <div class="progress-table" *ngIf="progressList.length > 0">
+      <div class="table-header">
+        <span>Date</span>
+        <span>Poids (kg)</span>
+        <span>Variation</span>
+        <span>Notes</span>
+        <span></span>
+      </div>
+
+      <div class="table-row" *ngFor="let entry of progressList; let i = index">
+        <span class="entry-date">{{ entry.progressDate | date:'dd/MM/yyyy' }}</span>
+
+        <span class="entry-weight">
+          {{ entry.weight ? entry.weight + ' kg' : '—' }}
+        </span>
+
+        <span class="entry-diff" *ngIf="getWeightDiff(i) !== null"
+          [class.positive]="getWeightDiff(i)! > 0"
+          [class.negative]="getWeightDiff(i)! < 0">
+          {{ getWeightDiff(i)! > 0 ? '+' : '' }}{{ getWeightDiff(i) }} kg
+        </span>
+        <span class="entry-diff neutral" *ngIf="getWeightDiff(i) === null">—</span>
+
+        <span class="entry-notes">{{ entry.notes || '—' }}</span>
+
+        <button class="btn-delete" (click)="deleteEntry(entry.id!)">🗑️</button>
+      </div>
+    </div>
+
+  </ng-container>
+</div>

@@ -1,0 +1,83 @@
+<div class="page">
+
+  <!-- En-tête -->
+  <div class="page-header">
+    <div>
+      <h1>🏋️ Exercices</h1>
+      <p>{{ filteredExercises.length }} exercice(s) disponible(s)</p>
+    </div>
+  </div>
+
+  <!-- Filtres -->
+  <div class="filters-bar">
+    <!-- Recherche -->
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="applyFilters()"
+        placeholder="Rechercher un exercice..."
+        class="search-input"
+      />
+    </div>
+
+    <!-- Catégorie -->
+    <select [(ngModel)]="selectedCategory" (ngModelChange)="applyFilters()" class="filter-select">
+      <option value="">Toutes catégories</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ categoryLabels[cat] }}</option>
+    </select>
+
+    <!-- Difficulté -->
+    <select [(ngModel)]="selectedDifficulty" (ngModelChange)="applyFilters()" class="filter-select">
+      <option value="">Toutes difficultés</option>
+      <option *ngFor="let diff of difficulties" [value]="diff">{{ difficultyLabels[diff] }}</option>
+    </select>
+
+    <!-- Reset -->
+    <button class="btn-reset" (click)="resetFilters()">✕ Réinitialiser</button>
+  </div>
+
+  <!-- Loader -->
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <!-- Grille d'exercices -->
+  <div class="exercises-grid" *ngIf="!isLoading">
+
+    <div *ngIf="filteredExercises.length === 0" class="empty-state">
+      <span>🔍</span>
+      <p>Aucun exercice trouvé.</p>
+      <button class="btn-outline" (click)="resetFilters()">Réinitialiser les filtres</button>
+    </div>
+
+    <a
+      *ngFor="let exercise of filteredExercises"
+      [routerLink]="['/exercises', exercise.id]"
+      class="exercise-card"
+    >
+      <!-- Image ou illustration SVG -->
+      <div class="exercise-image">
+        <app-exercise-icon
+          [exerciseName]="exercise.name"
+          [category]="exercise.category"
+          size="normal">
+        </app-exercise-icon>
+      </div>
+
+      <!-- Infos -->
+      <div class="exercise-body">
+        <div class="exercise-badges">
+          <span class="badge category">{{ categoryLabels[exercise.category] }}</span>
+          <span class="badge difficulty" [style.background]="difficultyColors[exercise.difficulty]">
+            {{ difficultyLabels[exercise.difficulty] }}
+          </span>
+        </div>
+        <h3>{{ exercise.name }}</h3>
+        <p class="muscle-group" *ngIf="exercise.muscleGroup">
+          🎯 {{ exercise.muscleGroup }}
+        </p>
+        <p class="description" *ngIf="exercise.description">{{ exercise.description }}</p>
+      </div>
+    </a>
+  </div>
+</div>

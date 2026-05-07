@@ -1,0 +1,100 @@
+<div class="page">
+
+  <div class="page-header">
+    <button class="btn-back" routerLink="/workouts">← Retour</button>
+    <h1>➕ Nouvelle séance</h1>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" class="workout-form">
+
+    <!-- Informations générales -->
+    <div class="form-section">
+      <h2>Informations générales</h2>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="title">Titre <span class="required">*</span></label>
+          <input id="title" type="text" [(ngModel)]="workout.title" name="title"
+            placeholder="Ex: Séance Push du lundi" required class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="date">Date <span class="required">*</span></label>
+          <input id="date" type="date" [(ngModel)]="workout.workoutDate" name="workoutDate"
+            required class="form-control" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="duration">Durée (minutes)</label>
+          <input id="duration" type="number" [(ngModel)]="workout.duration" name="duration"
+            placeholder="60" min="1" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="calories">Calories brûlées</label>
+          <input id="calories" type="number" [(ngModel)]="workout.totalCalories" name="totalCalories"
+            placeholder="300" min="0" class="form-control" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Notes</label>
+        <textarea id="notes" [(ngModel)]="workout.notes" name="notes"
+          placeholder="Observations, ressenti..." rows="3" class="form-control"></textarea>
+      </div>
+    </div>
+
+    <!-- Exercices -->
+    <div class="form-section">
+      <h2>Exercices</h2>
+
+      <!-- Sélecteur d'exercice -->
+      <div class="exercise-picker">
+        <select [(ngModel)]="selectedExerciseId" name="selectedExercise" class="form-control">
+          <option [ngValue]="null">-- Choisir un exercice --</option>
+          <option *ngFor="let ex of availableExercises" [value]="ex.id">
+            {{ ex.name }} ({{ ex.category }})
+          </option>
+        </select>
+        <button type="button" class="btn-add" (click)="addExercise()"
+          [disabled]="!selectedExerciseId">
+          + Ajouter
+        </button>
+      </div>
+
+      <!-- Liste des exercices ajoutés -->
+      <div *ngIf="localExercises.length === 0" class="exercises-empty">
+        Aucun exercice ajouté. Sélectionnez des exercices ci-dessus.
+      </div>
+
+      <div class="exercises-table" *ngIf="localExercises.length > 0">
+        <div class="exercise-row header-row">
+          <span>Exercice</span>
+          <span>Séries</span>
+          <span>Répétitions</span>
+          <span></span>
+        </div>
+        <div class="exercise-row" *ngFor="let ex of localExercises; let i = index">
+          <span class="ex-name">{{ ex.exercise?.name }}</span>
+          <input type="number" [(ngModel)]="ex.sets" [name]="'sets_' + i"
+            min="1" max="20" class="sets-input" />
+          <input type="number" [(ngModel)]="ex.reps" [name]="'reps_' + i"
+            min="1" max="100" class="reps-input" />
+          <button type="button" class="btn-remove" (click)="removeExercise(i)">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Erreur -->
+    <div class="error-message" *ngIf="errorMessage">⚠️ {{ errorMessage }}</div>
+
+    <!-- Actions -->
+    <div class="form-actions">
+      <button type="button" class="btn-outline" routerLink="/workouts">Annuler</button>
+      <button type="submit" class="btn-primary" [disabled]="isLoading">
+        {{ isLoading ? 'Enregistrement...' : 'Enregistrer la séance' }}
+      </button>
+    </div>
+
+  </form>
+</div>
