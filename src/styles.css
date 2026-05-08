@@ -76,3 +76,70 @@ option {
 
 /* ── Sélection ── */
 ::selection { background: rgba(245,197,24,0.3); color: #fff; }
+
+/* =============================================
+   OPTIMISATIONS MOBILE / PWA
+   ============================================= */
+
+/* Évite le zoom sur les inputs iOS */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+/* Safe area pour les téléphones avec encoche (iPhone X+, Android) */
+.main-content {
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Désactive le highlight bleu au tap sur mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Améliore le scroll sur iOS */
+html, body {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
+}
+
+/* Boutons plus grands sur mobile (min 44px = recommandation Apple/Google) */
+@media (max-width: 768px) {
+  button, a.btn-primary, a.btn-outline, a.btn-hero {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Navigation mobile plus grande */
+  .nav-link {
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* Texte plus lisible sur petit écran */
+  body {
+    font-size: 15px;
+  }
+
+  /* Cartes exercices en 1 colonne sur très petit écran */
+  .exercises-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Formulaires pleine largeur */
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Très petits écrans (320px) */
+@media (max-width: 380px) {
+  .page {
+    padding: 1rem !important;
+  }
+
+  .hero-banner {
+    padding: 1.5rem !important;
+  }
+}

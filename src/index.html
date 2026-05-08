@@ -1,13 +1,33 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>ProjetAngular</title>
+  <title>FitTracker — Street Workout</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Viewport mobile optimisé -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- PWA / App mobile -->
+  <meta name="theme-color" content="#f5c518">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FitTracker">
+
+  <!-- Description -->
+  <meta name="description" content="Suivi d'entraînement street workout et calisthenics">
+
+  <!-- Icônes -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="assets/icons/icon-192x192.png">
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
   <app-root></app-root>
+  <noscript>Activez JavaScript pour utiliser FitTracker.</noscript>
 </body>
 </html>
