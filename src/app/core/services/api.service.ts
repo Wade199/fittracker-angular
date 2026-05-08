@@ -11,8 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-  // URL de base de l'API — à adapter selon votre backend
-  private readonly BASE_URL = 'http://localhost:8080/api';
+  // URL de base de l'API — port 8081 quand lancé via Docker, 8080 en local
+  private readonly BASE_URL = 'http://localhost:8081/api';
 
   constructor(private http: HttpClient) {}
 
