@@ -1,106 +1,28 @@
 <div class="auth-page">
 
-  <!-- Panneau gauche — illustration street workout -->
-  <div class="auth-visual">
-    <div class="visual-content">
-      <!-- SVG Hero Street Workout -->
-      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
-        <defs>
-          <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#e94560;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#c53030;stop-opacity:1" />
-          </linearGradient>
-          <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#4a90e2;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#357abd;stop-opacity:1" />
-          </linearGradient>
-        </defs>
+  <!-- ── Panneau gauche — image pure, rien d'autre ── -->
+  <div class="auth-visual"></div>
 
-        <!-- Barre de traction -->
-        <rect x="30" y="60" width="340" height="14" rx="7" fill="url(#barGrad)" opacity="0.9"/>
-        <rect x="30" y="50" width="14" height="30" rx="7" fill="url(#barGrad)" opacity="0.7"/>
-        <rect x="356" y="50" width="14" height="30" rx="7" fill="url(#barGrad)" opacity="0.7"/>
-
-        <!-- Personnage en traction (pull-up) -->
-        <!-- Tête -->
-        <circle cx="200" cy="115" r="22" fill="url(#heroGrad)"/>
-        <!-- Cou -->
-        <rect x="193" y="135" width="14" height="12" rx="4" fill="url(#heroGrad)"/>
-        <!-- Corps -->
-        <rect x="175" y="147" width="50" height="60" rx="12" fill="url(#heroGrad)"/>
-        <!-- Bras gauche levé -->
-        <rect x="140" y="74" width="14" height="80" rx="7" fill="url(#heroGrad)" transform="rotate(-15 147 114)"/>
-        <!-- Bras droit levé -->
-        <rect x="246" y="74" width="14" height="80" rx="7" fill="url(#heroGrad)" transform="rotate(15 253 114)"/>
-        <!-- Jambe gauche -->
-        <rect x="180" y="205" width="16" height="70" rx="8" fill="url(#heroGrad)" transform="rotate(10 188 240)"/>
-        <!-- Jambe droite -->
-        <rect x="204" y="205" width="16" height="70" rx="8" fill="url(#heroGrad)" transform="rotate(-10 212 240)"/>
-        <!-- Chaussure gauche -->
-        <ellipse cx="183" cy="278" rx="14" ry="8" fill="url(#heroGrad)" transform="rotate(10 183 278)"/>
-        <!-- Chaussure droite -->
-        <ellipse cx="217" cy="278" rx="14" ry="8" fill="url(#heroGrad)" transform="rotate(-10 217 278)"/>
-
-        <!-- Muscles / détails corps -->
-        <ellipse cx="190" cy="165" rx="8" ry="12" fill="rgba(255,255,255,0.15)"/>
-        <ellipse cx="210" cy="165" rx="8" ry="12" fill="rgba(255,255,255,0.15)"/>
-
-        <!-- Éléments décoratifs -->
-        <circle cx="60" cy="380" r="40" fill="rgba(233,69,96,0.08)"/>
-        <circle cx="340" cy="420" r="55" fill="rgba(74,144,226,0.08)"/>
-        <circle cx="350" cy="350" r="25" fill="rgba(233,69,96,0.06)"/>
-
-        <!-- Texte motivationnel -->
-        <text x="200" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="rgba(255,255,255,0.9)">STREET WORKOUT</text>
-        <text x="200" y="368" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.5)">Calisthenics &amp; Street Fitness</text>
-
-        <!-- Lignes décoratives -->
-        <line x1="80" y1="350" x2="140" y2="350" stroke="rgba(233,69,96,0.5)" stroke-width="2"/>
-        <line x1="260" y1="350" x2="320" y2="350" stroke="rgba(233,69,96,0.5)" stroke-width="2"/>
-
-        <!-- Stats déco -->
-        <rect x="60" y="390" width="80" height="50" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <text x="100" y="412" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#e94560">20+</text>
-        <text x="100" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">Exercices</text>
-
-        <rect x="160" y="390" width="80" height="50" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <text x="200" y="412" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#4a90e2">100%</text>
-        <text x="200" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">Gratuit</text>
-
-        <rect x="260" y="390" width="80" height="50" rx="10" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-        <text x="300" y="412" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f39c12">∞</text>
-        <text x="300" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.5)">Progrès</text>
-      </svg>
-
-      <div class="visual-tagline">
-        <h2>Transforme ton corps</h2>
-        <p>Suis tes séances, mesure tes progrès, dépasse tes limites.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Panneau droit — formulaire -->
+  <!-- ── Panneau droit — formulaire ── -->
   <div class="auth-form-panel">
     <div class="auth-card">
-      <!-- Logo -->
+
       <div class="auth-logo">
         <div class="logo-icon-wrap">
-          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
-            <circle cx="20" cy="20" r="19" fill="#e94560"/>
-            <circle cx="20" cy="13" r="5" fill="white"/>
-            <rect x="15" y="20" width="10" height="12" rx="3" fill="white"/>
-            <rect x="8" y="22" width="6" height="8" rx="3" fill="white"/>
-            <rect x="26" y="22" width="6" height="8" rx="3" fill="white"/>
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" width="44" height="44">
+            <circle cx="20" cy="20" r="19" fill="#f5c518"/>
+            <circle cx="20" cy="13" r="5" fill="#080808"/>
+            <rect x="15" y="20" width="10" height="12" rx="3" fill="#080808"/>
+            <rect x="8" y="22" width="6" height="8" rx="3" fill="#080808"/>
+            <rect x="26" y="22" width="6" height="8" rx="3" fill="#080808"/>
           </svg>
         </div>
         <h1>FitTracker</h1>
         <p>Connectez-vous à votre compte</p>
       </div>
 
-      <!-- Formulaire -->
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
 
-        <!-- Email -->
         <div class="form-group">
           <label for="email">Email</label>
           <input
@@ -114,7 +36,6 @@
           />
         </div>
 
-        <!-- Mot de passe -->
         <div class="form-group">
           <label for="password">Mot de passe</label>
           <div class="input-with-icon">
@@ -133,23 +54,21 @@
           </div>
         </div>
 
-        <!-- Message d'erreur -->
         <div class="error-message" *ngIf="errorMessage">
           ⚠️ {{ errorMessage }}
         </div>
 
-        <!-- Bouton submit -->
         <button type="submit" class="btn-primary" [disabled]="isLoading">
           <span *ngIf="!isLoading">Se connecter</span>
           <span *ngIf="isLoading">Connexion...</span>
         </button>
       </form>
 
-      <!-- Lien inscription -->
       <p class="auth-link">
         Pas encore de compte ?
         <a routerLink="/register">Créer un compte</a>
       </p>
+
     </div>
   </div>
 </div>

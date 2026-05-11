@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1000" width="900" height="1000">
+  <defs>
+    <!-- Fond principal noir -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0800"/>
+      <stop offset="40%" stop-color="#111000"/>
+      <stop offset="100%" stop-color="#050500"/>
+    </linearGradient>
+    <!-- Halo doré central (soleil derrière coureur) -->
+    <radialGradient id="sunGlow" cx="58%" cy="38%" r="35%">
+      <stop offset="0%" stop-color="#f5c518" stop-opacity="0.9"/>
+      <stop offset="30%" stop-color="#c9900a" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#8b6000" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Halo bas gauche -->
+    <radialGradient id="glowBL" cx="20%" cy="85%" r="40%">
+      <stop offset="0%" stop-color="#f5c518" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Dégradé diagonal jaune (coins) -->
+    <linearGradient id="diagYellow" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5c518" stop-opacity="0.25"/>
+      <stop offset="40%" stop-color="#f5c518" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="diagYellow2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f5c518" stop-opacity="0.2"/>
+      <stop offset="40%" stop-color="#f5c518" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Dégradé texte bas -->
+    <linearGradient id="textBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.85"/>
+    </linearGradient>
+    <!-- Clip pour le téléphone -->
+    <clipPath id="phoneClip">
+      <rect x="580" y="180" width="240" height="480" rx="28"/>
+    </clipPath>
+  </defs>
+
+  <!-- ── FOND ── -->
+  <rect width="900" height="1000" fill="url(#bgGrad)"/>
+  <rect width="900" height="1000" fill="url(#sunGlow)"/>
+  <rect width="900" height="1000" fill="url(#glowBL)"/>
+
+  <!-- Coins jaunes diagonaux -->
+  <polygon points="900,0 900,220 680,0" fill="url(#diagYellow)" opacity="0.6"/>
+  <polygon points="0,1000 0,780 220,1000" fill="url(#diagYellow2)" opacity="0.5"/>
+
+  <!-- Lignes diagonales décoratives -->
+  <line x1="750" y1="0" x2="900" y2="150" stroke="#f5c518" stroke-width="3" opacity="0.4"/>
+  <line x1="800" y1="0" x2="900" y2="100" stroke="#f5c518" stroke-width="1.5" opacity="0.25"/>
+  <line x1="0" y1="850" x2="150" y2="1000" stroke="#f5c518" stroke-width="3" opacity="0.35"/>
+  <line x1="0" y1="900" x2="100" y2="1000" stroke="#f5c518" stroke-width="1.5" opacity="0.2"/>
+
+  <!-- ── ROUTE / SOL ── -->
+  <ellipse cx="450" cy="820" rx="500" ry="80" fill="#1a1400" opacity="0.8"/>
+  <rect x="0" y="780" width="900" height="220" fill="url(#textBg)"/>
+
+  <!-- Lignes de route -->
+  <line x1="420" y1="780" x2="380" y2="1000" stroke="#f5c518" stroke-width="2" opacity="0.15"/>
+  <line x1="480" y1="780" x2="520" y2="1000" stroke="#f5c518" stroke-width="2" opacity="0.15"/>
+
+  <!-- ── SILHOUETTE COUREUR ── -->
+  <!-- Ombre au sol -->
+  <ellipse cx="340" cy="800" rx="90" ry="18" fill="#000000" opacity="0.5"/>
+
+  <!-- Corps du coureur (silhouette noire avec contour doré) -->
+  <g fill="#1a1200" stroke="#f5c518" stroke-width="1.5" opacity="0.95">
+    <!-- Tête -->
+    <circle cx="330" cy="320" r="38" fill="#2a2000" stroke="#f5c518" stroke-width="2"/>
+    <!-- Cou -->
+    <rect x="318" y="355" width="24" height="20" rx="6" fill="#2a2000"/>
+    <!-- Torse -->
+    <path d="M 285 375 Q 330 365 375 375 L 385 520 Q 330 535 275 520 Z" fill="#2a2000"/>
+    <!-- Bras gauche (en arrière) -->
+    <path d="M 285 390 Q 240 430 220 490 Q 215 510 225 515 Q 235 520 245 500 Q 265 445 305 405 Z" fill="#1a1200"/>
+    <!-- Bras droit (en avant, plié) -->
+    <path d="M 370 390 Q 410 420 430 380 Q 440 360 425 350 Q 410 340 400 360 Q 385 390 365 400 Z" fill="#2a2000"/>
+    <!-- Jambe gauche (en avant, levée) -->
+    <path d="M 295 520 Q 270 580 240 640 Q 220 680 230 700 Q 245 720 265 700 Q 280 670 300 620 Q 325 560 340 520 Z" fill="#2a2000"/>
+    <!-- Jambe droite (en arrière) -->
+    <path d="M 355 520 Q 380 580 400 650 Q 415 700 405 730 Q 395 755 375 745 Q 355 735 360 700 Q 365 660 345 590 Q 330 545 320 520 Z" fill="#1a1200"/>
+    <!-- Chaussure gauche -->
+    <path d="M 225 695 Q 200 710 195 730 Q 193 745 210 748 Q 240 752 265 740 Q 280 730 275 715 Q 268 700 250 698 Z" fill="#f5c518" stroke="none"/>
+    <!-- Chaussure droite -->
+    <path d="M 360 738 Q 340 755 338 775 Q 337 790 355 792 Q 385 795 408 780 Q 420 768 415 752 Q 408 738 390 736 Z" fill="#f5c518" stroke="none"/>
+  </g>
+
+  <!-- Reflet lumineux sur le coureur -->
+  <path d="M 310 330 Q 340 310 360 340 Q 370 360 355 375 Q 335 355 310 330 Z" fill="#f5c518" opacity="0.12"/>
+
+  <!-- ── MOCKUP TÉLÉPHONE ── -->
+  <!-- Ombre téléphone -->
+  <ellipse cx="700" cy="680" rx="100" ry="20" fill="#000" opacity="0.4"/>
+
+  <!-- Corps téléphone -->
+  <rect x="578" y="178" width="244" height="484" rx="30" fill="#0a0a0a" stroke="#333" stroke-width="2"/>
+  <rect x="582" y="182" width="236" height="476" rx="27" fill="#111111"/>
+
+  <!-- Encoche -->
+  <rect x="660" y="182" width="80" height="22" rx="11" fill="#0a0a0a"/>
+
+  <!-- Écran téléphone -->
+  <rect x="590" y="210" width="220" height="430" rx="4" fill="#0f0f0f" clip-path="url(#phoneClip)"/>
+
+  <!-- Header app -->
+  <rect x="590" y="210" width="220" height="55" fill="#141414"/>
+  <text x="600" y="232" font-family="Arial, sans-serif" font-size="11" fill="#888">Bonjour, Alex 👋</text>
+  <text x="600" y="252" font-family="Arial Black, sans-serif" font-size="14" font-weight="900" fill="#f0f0f0">Aperçu</text>
+
+  <!-- Carte stats 1 -->
+  <rect x="596" y="272" width="98" height="75" rx="8" fill="#1a1a1a"/>
+  <text x="606" y="290" font-family="Arial, sans-serif" font-size="9" fill="#888">Pas du jour</text>
+  <text x="606" y="310" font-family="Arial Black, sans-serif" font-size="18" font-weight="900" fill="#f0f0f0">8 432</text>
+  <text x="606" y="325" font-family="Arial, sans-serif" font-size="8" fill="#555">/10 000 pas</text>
+  <!-- Mini graphe barres -->
+  <rect x="606" y="335" width="6" height="8" rx="2" fill="#f5c518" opacity="0.6"/>
+  <rect x="615" y="330" width="6" height="13" rx="2" fill="#f5c518" opacity="0.7"/>
+  <rect x="624" y="327" width="6" height="16" rx="2" fill="#f5c518"/>
+  <rect x="633" y="332" width="6" height="11" rx="2" fill="#f5c518" opacity="0.7"/>
+  <rect x="642" y="328" width="6" height="15" rx="2" fill="#f5c518" opacity="0.8"/>
+  <rect x="651" y="333" width="6" height="10" rx="2" fill="#f5c518" opacity="0.6"/>
+  <rect x="660" y="326" width="6" height="17" rx="2" fill="#f5c518"/>
+  <rect x="669" y="330" width="6" height="13" rx="2" fill="#f5c518" opacity="0.7"/>
+
+  <!-- Carte stats 2 -->
+  <rect x="702" y="272" width="102" height="75" rx="8" fill="#1a1a1a"/>
+  <text x="712" y="290" font-family="Arial, sans-serif" font-size="9" fill="#888">Calories brûlées</text>
+  <text x="712" y="310" font-family="Arial Black, sans-serif" font-size="18" font-weight="900" fill="#f0f0f0">562</text>
+  <text x="712" y="325" font-family="Arial, sans-serif" font-size="8" fill="#555">kcal</text>
+  <!-- Mini graphe courbe -->
+  <polyline points="712,342 722,335 732,340 742,332 752,337 762,330 772,335 782,328" fill="none" stroke="#f5c518" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Carte entraînement -->
+  <rect x="596" y="355" width="98" height="75" rx="8" fill="#1a1a1a"/>
+  <text x="606" y="373" font-family="Arial, sans-serif" font-size="9" fill="#888">Entraînement</text>
+  <text x="606" y="398" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#f0f0f0">45</text>
+  <text x="606" y="413" font-family="Arial, sans-serif" font-size="9" fill="#555">min</text>
+  <!-- Icône haltère -->
+  <text x="660" y="400" font-size="18" fill="#f5c518" opacity="0.7">🏋️</text>
+
+  <!-- Carte fréquence cardiaque -->
+  <rect x="702" y="355" width="102" height="75" rx="8" fill="#1a1a1a"/>
+  <text x="712" y="373" font-family="Arial, sans-serif" font-size="9" fill="#888">Fréquence cardiaque</text>
+  <text x="712" y="398" font-family="Arial Black, sans-serif" font-size="22" font-weight="900" fill="#f0f0f0">128</text>
+  <text x="712" y="413" font-family="Arial, sans-serif" font-size="9" fill="#555">bpm</text>
+  <!-- Mini courbe cardiaque -->
+  <polyline points="712,422 718,418 722,428 728,410 734,430 740,418 746,422 752,418 758,422" fill="none" stroke="#f5c518" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Objectif hebdomadaire -->
+  <rect x="596" y="438" width="208" height="60" rx="8" fill="#1a1a1a"/>
+  <text x="606" y="456" font-family="Arial, sans-serif" font-size="9" fill="#888">Objectif hebdomadaire</text>
+  <text x="606" y="476" font-family="Arial Black, sans-serif" font-size="16" font-weight="900" fill="#f0f0f0">4/5</text>
+  <text x="606" y="490" font-family="Arial, sans-serif" font-size="8" fill="#555">entraînements</text>
+  <!-- Barre progression -->
+  <rect x="640" y="468" width="155" height="6" rx="3" fill="#2a2a2a"/>
+  <rect x="640" y="468" width="124" height="6" rx="3" fill="#f5c518"/>
+  <!-- Check -->
+  <circle cx="790" cy="471" r="10" fill="#f5c518"/>
+  <text x="786" y="475" font-size="10" fill="#080808">✓</text>
+
+  <!-- Barre navigation téléphone -->
+  <rect x="590" y="600" width="220" height="40" fill="#141414"/>
+  <text x="610" y="625" font-size="16" fill="#f5c518">🏠</text>
+  <text x="650" y="625" font-size="16" fill="#555">🏋️</text>
+  <text x="690" y="625" font-size="16" fill="#555">📊</text>
+  <text x="730" y="625" font-size="16" fill="#555">👤</text>
+
+  <!-- Notification bas téléphone -->
+  <rect x="590" y="648" width="220" height="40" rx="8" fill="#1a1500" stroke="#f5c518" stroke-width="1" stroke-opacity="0.4"/>
+  <text x="600" y="663" font-size="14" fill="#f5c518">🏆</text>
+  <text x="620" y="661" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#f5c518">Garde le cap !</text>
+  <text x="620" y="674" font-family="Arial, sans-serif" font-size="8" fill="#888">Tu es sur la bonne voie.</text>
+
+  <!-- ── LOGO FitTracker en haut gauche ── -->
+  <g transform="translate(40, 45)">
+    <circle cx="16" cy="16" r="15" fill="#f5c518"/>
+    <text x="16" y="21" text-anchor="middle" font-size="14" fill="#080808">🏃</text>
+  </g>
+  <text x="70" y="68" font-family="Arial, sans-serif" font-size="22" font-weight="900" fill="#f5c518">Fit</text>
+  <text x="103" y="68" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#ffffff">Tracker</text>
+
+  <!-- ── TEXTE PRINCIPAL ── -->
+  <text x="40" y="580" font-family="Arial Black, sans-serif" font-size="58" font-weight="900" fill="white" opacity="0.95">SUIVI.</text>
+  <text x="40" y="648" font-family="Arial Black, sans-serif" font-size="58" font-weight="900" fill="white" opacity="0.95">PROGRÈS.</text>
+  <text x="40" y="716" font-family="Arial Black, sans-serif" font-size="52" font-weight="900" fill="#f5c518">MEILLEURE TOI.</text>
+
+  <!-- Sous-texte -->
+  <text x="40" y="750" font-family="Arial, sans-serif" font-size="15" fill="rgba(255,255,255,0.6)">FitTracker t'aide à suivre tes entraînements,</text>
+  <text x="40" y="770" font-family="Arial, sans-serif" font-size="15" fill="rgba(255,255,255,0.6)">analyser tes performances et atteindre tes objectifs.</text>
+
+  <!-- ── ICÔNES BAS ── -->
+  <g transform="translate(40, 810)">
+    <!-- Progression -->
+    <circle cx="20" cy="20" r="18" fill="rgba(245,197,24,0.12)" stroke="rgba(245,197,24,0.35)" stroke-width="1"/>
+    <text x="20" y="26" text-anchor="middle" font-size="16" fill="#f5c518">📈</text>
+    <text x="20" y="52" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.55)">Progression</text>
+  </g>
+  <g transform="translate(175, 810)">
+    <circle cx="20" cy="20" r="18" fill="rgba(245,197,24,0.12)" stroke="rgba(245,197,24,0.35)" stroke-width="1"/>
+    <text x="20" y="26" text-anchor="middle" font-size="16" fill="#f5c518">🏋️</text>
+    <text x="20" y="52" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.55)">Entraînements</text>
+  </g>
+  <g transform="translate(320, 810)">
+    <circle cx="20" cy="20" r="18" fill="rgba(245,197,24,0.12)" stroke="rgba(245,197,24,0.35)" stroke-width="1"/>
+    <text x="20" y="26" text-anchor="middle" font-size="16" fill="#f5c518">🎯</text>
+    <text x="20" y="52" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.55)">Objectifs</text>
+  </g>
+
+  <!-- Objectif semaine -->
+  <rect x="40" y="880" width="200" height="55" rx="12" fill="rgba(20,18,0,0.85)" stroke="rgba(245,197,24,0.2)" stroke-width="1"/>
+  <!-- Cercle progression -->
+  <circle cx="72" cy="907" r="22" fill="none" stroke="#333" stroke-width="4"/>
+  <circle cx="72" cy="907" r="22" fill="none" stroke="#f5c518" stroke-width="4" stroke-dasharray="110 138" stroke-dashoffset="35" stroke-linecap="round"/>
+  <text x="72" y="912" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="11" font-weight="900" fill="#f5c518">87%</text>
+  <text x="105" y="900" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="white">Objectif de la semaine</text>
+  <text x="105" y="916" font-family="Arial, sans-serif" font-size="11" fill="#f5c518">4 / 5 entraînements</text>
+  <!-- Barre -->
+  <rect x="105" y="922" width="120" height="5" rx="2.5" fill="#2a2a2a"/>
+  <rect x="105" y="922" width="96" height="5" rx="2.5" fill="#f5c518"/>
+</svg>

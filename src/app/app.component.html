@@ -1,7 +1,13 @@
-<!-- Header affiché uniquement si connecté -->
-<app-header *ngIf="authService.isLoggedIn()"></app-header>
+<!-- Splash screen au démarrage -->
+<app-splash-screen
+  *ngIf="showSplash"
+  (splashDone)="onSplashDone()">
+</app-splash-screen>
 
-<!-- Contenu principal -->
-<main class="main-content" [class.with-header]="authService.isLoggedIn()">
-  <router-outlet></router-outlet>
-</main>
+<!-- App principale — visible après le splash -->
+<ng-container *ngIf="!showSplash">
+  <app-header *ngIf="authService.isLoggedIn()"></app-header>
+  <main class="main-content" [class.with-header]="authService.isLoggedIn()">
+    <router-outlet></router-outlet>
+  </main>
+</ng-container>

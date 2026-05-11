@@ -13,6 +13,7 @@ import { JwtInterceptor } from './core/auth/jwt.interceptor';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { ExerciseIconComponent } from './shared/components/exercise-icon/exercise-icon.component';
+import { SplashScreenComponent } from './shared/components/splash-screen/splash-screen.component';
 
 // Auth
 import { LoginComponent } from './features/auth/login/login.component';
@@ -41,6 +42,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     HeaderComponent,
     LoaderComponent,
     ExerciseIconComponent,
+    SplashScreenComponent,
     // Auth
     LoginComponent,
     RegisterComponent,

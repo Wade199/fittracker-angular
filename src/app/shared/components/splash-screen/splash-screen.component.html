@@ -1,0 +1,68 @@
+<div class="splash" [class.fade-out]="fadeOut" *ngIf="visible">
+
+  <!-- Fond avec grille futuriste -->
+  <div class="splash-grid"></div>
+
+  <!-- Halos lumineux -->
+  <div class="halo halo-1"></div>
+  <div class="halo halo-2"></div>
+
+  <!-- Contenu centré -->
+  <div class="splash-content">
+
+    <!-- Logo SVG animé -->
+    <div class="logo-wrap">
+      <svg class="logo-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <!-- Cercle de fond -->
+        <circle cx="60" cy="60" r="56" fill="#f5c518" class="logo-circle"/>
+        <!-- Cercle de progression animé -->
+        <circle
+          cx="60" cy="60" r="56"
+          fill="none"
+          stroke="rgba(255,255,255,0.3)"
+          stroke-width="4"
+          stroke-dasharray="352"
+          stroke-dashoffset="352"
+          class="logo-ring"
+          transform="rotate(-90 60 60)"
+        />
+        <!-- Silhouette athlète -->
+        <g fill="#080808">
+          <!-- Tête -->
+          <circle cx="60" cy="32" r="10"/>
+          <!-- Corps -->
+          <rect x="52" y="44" width="16" height="22" rx="5"/>
+          <!-- Bras gauche levé -->
+          <rect x="36" y="30" width="10" height="28" rx="5" transform="rotate(-25 41 44)"/>
+          <!-- Bras droit levé -->
+          <rect x="74" y="30" width="10" height="28" rx="5" transform="rotate(25 79 44)"/>
+          <!-- Jambe gauche -->
+          <rect x="50" y="64" width="10" height="26" rx="5" transform="rotate(10 55 77)"/>
+          <!-- Jambe droite -->
+          <rect x="60" y="64" width="10" height="26" rx="5" transform="rotate(-10 65 77)"/>
+        </g>
+      </svg>
+
+      <!-- Cercle pulsant derrière le logo -->
+      <div class="pulse-ring"></div>
+    </div>
+
+    <!-- Nom de l'app -->
+    <div class="app-name">
+      <span class="name-fit">Fit</span><span class="name-tracker">Tracker</span>
+    </div>
+
+    <!-- Tagline -->
+    <p class="tagline">STREET WORKOUT &amp; CALISTHENICS</p>
+
+    <!-- Barre de chargement -->
+    <div class="loader-bar">
+      <div class="loader-fill"></div>
+    </div>
+
+  </div>
+
+  <!-- Version -->
+  <p class="version">v1.0.0</p>
+
+</div>
