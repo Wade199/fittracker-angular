@@ -14,6 +14,10 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { ExerciseIconComponent } from './shared/components/exercise-icon/exercise-icon.component';
 import { SplashScreenComponent } from './shared/components/splash-screen/splash-screen.component';
+import { GdprBannerComponent } from './shared/components/gdpr-banner/gdpr-banner.component';
+
+// Legal
+import { PrivacyPolicyComponent } from './features/legal/privacy-policy/privacy-policy.component';
 
 // Auth
 import { LoginComponent } from './features/auth/login/login.component';
@@ -43,6 +47,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LoaderComponent,
     ExerciseIconComponent,
     SplashScreenComponent,
+    GdprBannerComponent,
+    // Legal
+    PrivacyPolicyComponent,
     // Auth
     LoginComponent,
     RegisterComponent,

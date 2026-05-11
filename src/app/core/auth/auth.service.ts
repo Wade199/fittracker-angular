@@ -5,8 +5,13 @@ import { ApiService } from '../services/api.service';
 import { User, AuthResponse, LoginRequest, RegisterRequest } from '../../shared/models/user.model';
 
 /**
- * Service d'authentification.
- * Gère le login, logout, stockage du token JWT et état de l'utilisateur connecté.
+ * Service d'authentification — Sécurisé RGPD/Production
+ *
+ * Sécurité :
+ * - Token JWT stocké en sessionStorage (effacé à la fermeture du navigateur)
+ * - Données utilisateur minimales stockées (pas de données sensibles)
+ * - Déconnexion automatique sur token expiré (401)
+ * - Pas de mot de passe stocké côté client
  */
 @Injectable({
   providedIn: 'root'
@@ -14,84 +19,96 @@ import { User, AuthResponse, LoginRequest, RegisterRequest } from '../../shared/
 export class AuthService {
 
   private readonly TOKEN_KEY = 'auth_token';
-  private readonly USER_KEY = 'current_user';
+  private readonly USER_KEY  = 'current_user';
 
-  // BehaviorSubject pour suivre l'état de l'utilisateur connecté
   private currentUserSubject = new BehaviorSubject<User | null>(this.getUserFromStorage());
-  public currentUser$ = this.currentUserSubject.asObservable();
+  public  currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(
     private apiService: ApiService,
     private router: Router
   ) {}
 
-  /**
-   * Connexion de l'utilisateur
-   */
   login(credentials: LoginRequest): Observable<AuthResponse> {
     return this.apiService.post<AuthResponse>('/auth/login', credentials).pipe(
-      tap(response => {
-        this.setSession(response);
-      })
+      tap(response => this.setSession(response))
     );
   }
 
-  /**
-   * Inscription d'un nouvel utilisateur
-   */
   register(data: RegisterRequest): Observable<AuthResponse> {
     return this.apiService.post<AuthResponse>('/auth/register', data).pipe(
-      tap(response => {
-        this.setSession(response);
-      })
+      tap(response => this.setSession(response))
     );
   }
 
-  /**
-   * Déconnexion
-   */
   logout(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
-    localStorage.removeItem(this.USER_KEY);
+    // Supprime toutes les données de session
+    sessionStorage.removeItem(this.TOKEN_KEY);
+    sessionStorage.removeItem(this.USER_KEY);
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }
 
   /**
-   * Vérifie si l'utilisateur est connecté
+   * Supprime toutes les données personnelles (droit à l'effacement RGPD)
    */
+  clearAllData(): void {
+    sessionStorage.clear();
+    localStorage.clear();
+    this.currentUserSubject.next(null);
+  }
+
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    const token = this.getToken();
+    if (!token) return false;
+    // Vérifie si le token JWT est expiré
+    return !this.isTokenExpired(token);
   }
 
-  /**
-   * Récupère le token JWT
-   */
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
-  /**
-   * Récupère l'utilisateur actuel
-   */
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;
   }
 
   /**
-   * Stocke le token et l'utilisateur après connexion
+   * Stocke uniquement les données nécessaires (principe de minimisation RGPD)
+   * Pas de données sensibles (pas de mot de passe, pas de données de santé brutes)
    */
   private setSession(authResponse: AuthResponse): void {
-    localStorage.setItem(this.TOKEN_KEY, authResponse.token);
-    localStorage.setItem(this.USER_KEY, JSON.stringify(authResponse.user));
+    sessionStorage.setItem(this.TOKEN_KEY, authResponse.token);
+
+    // Stocke uniquement les données non-sensibles
+    const safeUser = {
+      id:        authResponse.user.id,
+      username:  authResponse.user.username,
+      email:     authResponse.user.email,
+      firstName: authResponse.user.firstName,
+      lastName:  authResponse.user.lastName
+      // ⚠️ height/weight ne sont PAS stockés côté client (données de santé = sensibles RGPD)
+    };
+
+    sessionStorage.setItem(this.USER_KEY, JSON.stringify(safeUser));
     this.currentUserSubject.next(authResponse.user);
   }
 
-  /**
-   * Récupère l'utilisateur depuis le localStorage au démarrage
-   */
   private getUserFromStorage(): User | null {
-    const userJson = localStorage.getItem(this.USER_KEY);
+    const userJson = sessionStorage.getItem(this.USER_KEY);
     return userJson ? JSON.parse(userJson) : null;
+  }
+
+  /**
+   * Vérifie si le token JWT est expiré en décodant le payload
+   */
+  private isTokenExpired(token: string): boolean {
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expiry  = payload.exp * 1000; // convertit en ms
+      return Date.now() > expiry;
+    } catch {
+      return true; // token malformé = considéré expiré
+    }
   }
 }

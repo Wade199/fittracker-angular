@@ -10,4 +10,6 @@
   <main class="main-content" [class.with-header]="authService.isLoggedIn()">
     <router-outlet></router-outlet>
   </main>
+  <!-- Bannière RGPD — affichée sur toutes les pages -->
+  <app-gdpr-banner></app-gdpr-banner>
 </ng-container>

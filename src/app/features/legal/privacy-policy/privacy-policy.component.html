@@ -1,0 +1,118 @@
+<div class="policy-page">
+  <div class="policy-container">
+
+    <button class="btn-back" (click)="goBack()">← Retour</button>
+
+    <h1>🔒 Politique de Confidentialité</h1>
+    <p class="last-update">Dernière mise à jour : Mai 2026</p>
+
+    <div class="section">
+      <h2>1. Responsable du traitement</h2>
+      <p>FitTracker — Wade199<br>
+      Contact : <a href="https://github.com/Wade199">github.com/Wade199</a></p>
+    </div>
+
+    <div class="section">
+      <h2>2. Données collectées</h2>
+      <table>
+        <thead>
+          <tr><th>Donnée</th><th>Finalité</th><th>Base légale</th><th>Durée</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Email, nom d'utilisateur</td><td>Authentification</td><td>Contrat</td><td>Durée du compte</td></tr>
+          <tr><td>Mot de passe (hashé bcrypt)</td><td>Sécurité</td><td>Contrat</td><td>Durée du compte</td></tr>
+          <tr><td>Poids, taille</td><td>Suivi progression</td><td>Consentement</td><td>Durée du compte</td></tr>
+          <tr><td>Séances d'entraînement</td><td>Fonctionnalité principale</td><td>Contrat</td><td>Durée du compte</td></tr>
+          <tr><td>Adresse IP (logs)</td><td>Sécurité</td><td>Intérêt légitime</td><td>30 jours</td></tr>
+        </tbody>
+      </table>
+      <p class="note">⚠️ Les données de santé (poids, taille) sont des <strong>données sensibles</strong> au sens du RGPD. Elles ne sont jamais partagées avec des tiers.</p>
+    </div>
+
+    <div class="section">
+      <h2>3. Vos droits RGPD</h2>
+      <div class="rights-grid">
+        <div class="right-item">
+          <span>📋</span>
+          <div>
+            <strong>Droit d'accès</strong>
+            <p>Consultez toutes vos données depuis votre profil.</p>
+          </div>
+        </div>
+        <div class="right-item">
+          <span>✏️</span>
+          <div>
+            <strong>Droit de rectification</strong>
+            <p>Modifiez vos données depuis les paramètres.</p>
+          </div>
+        </div>
+        <div class="right-item">
+          <span>🗑️</span>
+          <div>
+            <strong>Droit à l'effacement</strong>
+            <p>Supprimez votre compte et toutes vos données.</p>
+          </div>
+        </div>
+        <div class="right-item">
+          <span>📦</span>
+          <div>
+            <strong>Droit à la portabilité</strong>
+            <p>Exportez vos données au format JSON.</p>
+          </div>
+        </div>
+        <div class="right-item">
+          <span>🚫</span>
+          <div>
+            <strong>Droit d'opposition</strong>
+            <p>Refusez certains traitements non essentiels.</p>
+          </div>
+        </div>
+        <div class="right-item">
+          <span>⏸️</span>
+          <div>
+            <strong>Droit à la limitation</strong>
+            <p>Limitez le traitement de vos données.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>4. Sécurité des données</h2>
+      <ul>
+        <li>✅ Mots de passe hashés avec <strong>BCrypt</strong></li>
+        <li>✅ Authentification par <strong>JWT</strong> (expiration 24h)</li>
+        <li>✅ Communications chiffrées <strong>HTTPS/TLS</strong> en production</li>
+        <li>✅ Token stocké en <strong>sessionStorage</strong> (effacé à la fermeture)</li>
+        <li>✅ Base de données isolée dans un réseau Docker privé</li>
+        <li>✅ Headers de sécurité HTTP (CSP, X-Frame-Options, HSTS)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>5. Cookies et stockage</h2>
+      <table>
+        <thead>
+          <tr><th>Nom</th><th>Type</th><th>Durée</th><th>Finalité</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>auth_token</td><td>sessionStorage</td><td>Session</td><td>Authentification JWT</td></tr>
+          <tr><td>current_user</td><td>sessionStorage</td><td>Session</td><td>Données utilisateur</td></tr>
+          <tr><td>gdpr_consent</td><td>localStorage</td><td>1 an</td><td>Mémorisation du consentement</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>6. Transferts de données</h2>
+      <p>Aucune donnée n'est transférée en dehors de l'Union Européenne. Aucune donnée n'est vendue ou partagée avec des tiers à des fins commerciales.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. Contact & réclamations</h2>
+      <p>Pour exercer vos droits ou pour toute question : <a href="https://github.com/Wade199">github.com/Wade199</a></p>
+      <p>Vous pouvez également déposer une réclamation auprès de la <strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank">cnil.fr</a></p>
+    </div>
+
+  </div>
+</div>

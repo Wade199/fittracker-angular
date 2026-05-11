@@ -1,0 +1,56 @@
+<div class="gdpr-banner" *ngIf="visible" role="dialog" aria-label="Consentement cookies">
+
+  <div class="gdpr-content">
+
+    <div class="gdpr-main">
+      <div class="gdpr-icon">🔒</div>
+      <div class="gdpr-text">
+        <h3>Vos données, votre contrôle</h3>
+        <p>
+          FitTracker utilise des données essentielles pour fonctionner (authentification, séances d'entraînement).
+          Conformément au <strong>RGPD</strong>, vous pouvez accepter ou refuser les cookies non essentiels.
+        </p>
+        <button class="btn-details" (click)="toggleDetails()">
+          {{ showDetails ? '▲ Masquer les détails' : '▼ Voir les détails' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Détails RGPD -->
+    <div class="gdpr-details" *ngIf="showDetails">
+      <div class="detail-item">
+        <span class="detail-icon essential">✅</span>
+        <div>
+          <strong>Cookies essentiels</strong> — Toujours actifs
+          <p>Token d'authentification JWT (sessionStorage), préférences de session. Nécessaires au fonctionnement.</p>
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-icon optional">⚙️</span>
+        <div>
+          <strong>Données personnelles stockées</strong>
+          <p>Nom d'utilisateur, email, données d'entraînement (poids, séances). Stockées sur nos serveurs sécurisés.</p>
+        </div>
+      </div>
+      <div class="detail-item">
+        <span class="detail-icon rights">⚖️</span>
+        <div>
+          <strong>Vos droits RGPD</strong>
+          <p>Accès, rectification, suppression de vos données à tout moment depuis votre profil.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <div class="gdpr-actions">
+      <button class="btn-essential" (click)="acceptEssential()">
+        Essentiels uniquement
+      </button>
+      <button class="btn-accept" (click)="acceptAll()">
+        Accepter tout
+      </button>
+    </div>
+
+  </div>
+
+</div>

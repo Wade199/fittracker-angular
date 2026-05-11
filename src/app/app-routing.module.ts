@@ -15,27 +15,26 @@ import { WorkoutCreateComponent } from './features/workouts/workout-create/worko
 import { WorkoutDetailComponent } from './features/workouts/workout-detail/workout-detail.component';
 import { ProgressTrackerComponent } from './features/progress/progress-tracker/progress-tracker.component';
 
+// Legal
+import { PrivacyPolicyComponent } from './features/legal/privacy-policy/privacy-policy.component';
+
 const routes: Routes = [
-  // Redirection par défaut
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
   // Routes publiques
-  { path: 'login', component: LoginComponent },
+  { path: 'login',   component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'privacy', component: PrivacyPolicyComponent },
 
   // Routes protégées
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard',       component: DashboardComponent,       canActivate: [AuthGuard] },
+  { path: 'exercises',       component: ExerciseListComponent,    canActivate: [AuthGuard] },
+  { path: 'exercises/:id',   component: ExerciseDetailComponent,  canActivate: [AuthGuard] },
+  { path: 'workouts',        component: WorkoutListComponent,     canActivate: [AuthGuard] },
+  { path: 'workouts/create', component: WorkoutCreateComponent,   canActivate: [AuthGuard] },
+  { path: 'workouts/:id',    component: WorkoutDetailComponent,   canActivate: [AuthGuard] },
+  { path: 'progress',        component: ProgressTrackerComponent, canActivate: [AuthGuard] },
 
-  { path: 'exercises', component: ExerciseListComponent, canActivate: [AuthGuard] },
-  { path: 'exercises/:id', component: ExerciseDetailComponent, canActivate: [AuthGuard] },
-
-  { path: 'workouts', component: WorkoutListComponent, canActivate: [AuthGuard] },
-  { path: 'workouts/create', component: WorkoutCreateComponent, canActivate: [AuthGuard] },
-  { path: 'workouts/:id', component: WorkoutDetailComponent, canActivate: [AuthGuard] },
-
-  { path: 'progress', component: ProgressTrackerComponent, canActivate: [AuthGuard] },
-
-  // Fallback
   { path: '**', redirectTo: '/dashboard' }
 ];
 
