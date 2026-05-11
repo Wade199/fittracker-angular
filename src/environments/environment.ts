@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
 
-  // URL de l'API en développement local
-  // Le backend Spring Boot tourne sur le port 8080
-  apiUrl: 'http://localhost:8080/api'
+  // Backend Spring Boot local (hors Docker) → port 8080
+  // Backend Docker                           → port 8081
+  // Décommente la ligne qui correspond à ton setup :
+  apiUrl: 'http://localhost:8081/api'   // ← Docker actif
+  // apiUrl: 'http://localhost:8080/api' // ← Spring Boot local direct
 };
