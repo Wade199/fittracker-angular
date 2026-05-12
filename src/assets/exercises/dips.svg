@@ -14,9 +14,9 @@
   <!-- Sol -->
   <rect x="0" y="205" width="400" height="3" rx="1" fill="#e94560" opacity="0.15"/>
   <!-- Silhouette -->
-  <circle cx="290" cy="148" r="18" fill="#e94560"/><rect x="80" y="152" width="200" height="20" rx="8" fill="#e94560"/><rect x="78" y="152" width="14" height="38" rx="7" fill="#e94560" transform="rotate(-12 85 171)"/><rect x="258" y="152" width="14" height="38" rx="7" fill="#e94560" transform="rotate(12 265 171)"/><rect x="100" y="170" width="13" height="38" rx="6" fill="#e94560"/><rect x="128" y="170" width="13" height="38" rx="6" fill="#e94560"/>
+  <rect x="60" y="100" width="16" height="100" rx="8" fill="rgba(245,197,24,0.3)"/><rect x="324" y="100" width="16" height="100" rx="8" fill="rgba(245,197,24,0.3)"/><rect x="60" y="100" width="280" height="14" rx="7" fill="rgba(245,197,24,0.3)"/><circle cx="200" cy="130" r="18" fill="#e94560"/><rect x="188" y="148" width="24" height="35" rx="8" fill="#e94560"/><rect x="155" y="110" width="14" height="45" rx="7" fill="#e94560" transform="rotate(-20 162 132)"/><rect x="231" y="110" width="14" height="45" rx="7" fill="#e94560" transform="rotate(20 238 132)"/><rect x="185" y="182" width="13" height="35" rx="6" fill="#e94560" transform="rotate(15 191 199)"/><rect x="202" y="182" width="13" height="35" rx="6" fill="#e94560" transform="rotate(-15 208 199)"/>
   <!-- Titre -->
-  <text x="200" y="22" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="14" font-weight="900" fill="#e94560" letter-spacing="2">PUSH-UPS</text>
+  <text x="200" y="22" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="14" font-weight="900" fill="#e94560" letter-spacing="2">DIPS</text>
   <text x="200" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.35)" letter-spacing="2">CHEST · PUSH</text>
   <!-- Barre déco bas -->
   <rect x="160" y="215" width="80" height="2" rx="1" fill="#e94560" opacity="0.4"/>

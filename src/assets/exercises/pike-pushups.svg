@@ -14,10 +14,10 @@
   <!-- Sol -->
   <rect x="0" y="205" width="400" height="3" rx="1" fill="#e94560" opacity="0.15"/>
   <!-- Silhouette -->
-  <circle cx="290" cy="148" r="18" fill="#e94560"/><rect x="80" y="152" width="200" height="20" rx="8" fill="#e94560"/><rect x="78" y="152" width="14" height="38" rx="7" fill="#e94560" transform="rotate(-12 85 171)"/><rect x="258" y="152" width="14" height="38" rx="7" fill="#e94560" transform="rotate(12 265 171)"/><rect x="100" y="170" width="13" height="38" rx="6" fill="#e94560"/><rect x="128" y="170" width="13" height="38" rx="6" fill="#e94560"/>
+  <circle cx="200" cy="80" r="18" fill="#e94560"/><rect x="185" y="98" width="16" height="50" rx="8" fill="#e94560" transform="rotate(30 193 123)"/><rect x="100" y="155" width="200" height="16" rx="8" fill="#e94560" transform="rotate(-20 200 163)"/><rect x="90" y="168" width="14" height="40" rx="7" fill="#e94560"/><rect x="280" y="168" width="14" height="40" rx="7" fill="#e94560"/>
   <!-- Titre -->
-  <text x="200" y="22" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="14" font-weight="900" fill="#e94560" letter-spacing="2">PUSH-UPS</text>
-  <text x="200" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.35)" letter-spacing="2">CHEST · PUSH</text>
+  <text x="200" y="22" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="14" font-weight="900" fill="#e94560" letter-spacing="2">PIKE PUSH-UPS</text>
+  <text x="200" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.35)" letter-spacing="2">SHOULDERS · PUSH</text>
   <!-- Barre déco bas -->
   <rect x="160" y="215" width="80" height="2" rx="1" fill="#e94560" opacity="0.4"/>
 </svg>

@@ -75,16 +75,24 @@ export class ExerciseIconComponent implements OnInit {
 
   imageUrl = '';
   imageError = false;
+  private _svgFallbackUrl = '';
 
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
-    this.imageUrl = `/assets/exercises/${this.getExerciseSlug()}.jpg`;
+    const slug = this.getExerciseSlug();
+    // Essaie JPG d'abord, puis SVG
+    this.imageUrl = `/assets/exercises/${slug}.jpg`;
+    this._svgFallbackUrl = `/assets/exercises/${slug}.svg`;
   }
 
-  /** Appelé quand l'image ne se charge pas → bascule sur le SVG */
   onImageError(): void {
-    this.imageError = true;
+    // Si JPG échoue, essaie le SVG
+    if (!this.imageError && this._svgFallbackUrl && !this.imageUrl.endsWith('.svg')) {
+      this.imageUrl = this._svgFallbackUrl;
+    } else {
+      this.imageError = true;
+    }
   }
 
   /**

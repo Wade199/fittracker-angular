@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 225">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#111100"/>
+      <stop offset="100%" stop-color="#080808"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4a90e2" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#4a90e2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="225" fill="url(#bg)"/>
+  <rect width="400" height="225" fill="url(#glow)"/>
+  <!-- Sol -->
+  <rect x="0" y="205" width="400" height="3" rx="1" fill="#4a90e2" opacity="0.15"/>
+  <!-- Silhouette -->
+  <rect x="50" y="50" width="300" height="14" rx="7" fill="rgba(245,197,24,0.3)"/><circle cx="200" cy="75" r="18" fill="#4a90e2"/><rect x="188" y="93" width="24" height="45" rx="8" fill="#4a90e2"/><rect x="148" y="57" width="14" height="50" rx="7" fill="#4a90e2" transform="rotate(-22 155 82)"/><rect x="238" y="57" width="14" height="50" rx="7" fill="#4a90e2" transform="rotate(22 245 82)"/><rect x="185" y="137" width="13" height="40" rx="6" fill="#4a90e2" transform="rotate(10 191 157)"/><rect x="202" y="137" width="13" height="40" rx="6" fill="#4a90e2" transform="rotate(-10 208 157)"/>
+  <!-- Titre -->
+  <text x="200" y="22" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="14" font-weight="900" fill="#4a90e2" letter-spacing="2">MUSCLE-UPS</text>
+  <text x="200" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.35)" letter-spacing="2">BACK · PULL</text>
+  <!-- Barre déco bas -->
+  <rect x="160" y="215" width="80" height="2" rx="1" fill="#4a90e2" opacity="0.4"/>
+</svg>
