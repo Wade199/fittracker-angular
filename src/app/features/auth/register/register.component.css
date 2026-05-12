@@ -83,3 +83,7 @@
 .auth-link a:hover { text-shadow: 0 0 8px rgba(245,197,24,0.5); }
 
 @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+.legal-link { text-align: center; margin-top: 0.75rem; font-size: 0.75rem; color: #333; }
+.legal-link a { color: #555; }
+.legal-link a:hover { color: #f5c518; }

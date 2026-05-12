@@ -42,16 +42,12 @@ export class AuthService {
   }
 
   logout(): void {
-    // Supprime toutes les données de session
-    sessionStorage.removeItem(this.TOKEN_KEY);
-    sessionStorage.removeItem(this.USER_KEY);
+    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.USER_KEY);
     this.currentUserSubject.next(null);
     this.router.navigate(['/login']);
   }
 
-  /**
-   * Supprime toutes les données personnelles (droit à l'effacement RGPD)
-   */
   clearAllData(): void {
     sessionStorage.clear();
     localStorage.clear();
@@ -61,12 +57,11 @@ export class AuthService {
   isLoggedIn(): boolean {
     const token = this.getToken();
     if (!token) return false;
-    // Vérifie si le token JWT est expiré
     return !this.isTokenExpired(token);
   }
 
   getToken(): string | null {
-    return sessionStorage.getItem(this.TOKEN_KEY);
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 
   getCurrentUser(): User | null {
@@ -78,24 +73,20 @@ export class AuthService {
    * Pas de données sensibles (pas de mot de passe, pas de données de santé brutes)
    */
   private setSession(authResponse: AuthResponse): void {
-    sessionStorage.setItem(this.TOKEN_KEY, authResponse.token);
-
-    // Stocke uniquement les données non-sensibles
+    localStorage.setItem(this.TOKEN_KEY, authResponse.token);
     const safeUser = {
       id:        authResponse.user.id,
       username:  authResponse.user.username,
       email:     authResponse.user.email,
       firstName: authResponse.user.firstName,
       lastName:  authResponse.user.lastName
-      // ⚠️ height/weight ne sont PAS stockés côté client (données de santé = sensibles RGPD)
     };
-
-    sessionStorage.setItem(this.USER_KEY, JSON.stringify(safeUser));
+    localStorage.setItem(this.USER_KEY, JSON.stringify(safeUser));
     this.currentUserSubject.next(authResponse.user);
   }
 
   private getUserFromStorage(): User | null {
-    const userJson = sessionStorage.getItem(this.USER_KEY);
+    const userJson = localStorage.getItem(this.USER_KEY);
     return userJson ? JSON.parse(userJson) : null;
   }
 

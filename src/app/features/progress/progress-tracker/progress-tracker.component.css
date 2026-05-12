@@ -68,3 +68,12 @@ textarea.form-control { resize: vertical; }
   .form-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) { .stats-grid { grid-template-columns: 1fr; } }
+
+/* ── Graphique ── */
+.chart-card {
+  background: #0f0f0f; border: 1px solid #1e1e1e; border-radius: 12px;
+  padding: 1.25rem; margin-bottom: 1.5rem;
+}
+.chart-card h3 { font-size: 0.8rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 1rem; }
+.chart-wrap { width: 100%; overflow-x: auto; }
+.chart-svg { width: 100%; height: auto; min-width: 300px; display: block; }

@@ -1,0 +1,93 @@
+<div class="page">
+
+  <app-loader *ngIf="isLoading"></app-loader>
+
+  <ng-container *ngIf="!isLoading">
+
+    <div class="page-header">
+      <div>
+        <h1>👤 Mon Profil</h1>
+        <p>{{ user?.email }}</p>
+      </div>
+    </div>
+
+    <!-- Avatar -->
+    <div class="avatar-section">
+      <div class="avatar">{{ (user?.firstName || user?.username || '?')[0].toUpperCase() }}</div>
+      <div class="avatar-info">
+        <h2>{{ user?.firstName }} {{ user?.lastName }}</h2>
+        <span class="username">@{{ user?.username }}</span>
+      </div>
+    </div>
+
+    <!-- Formulaire -->
+    <div class="form-card">
+      <h3>Modifier mes informations</h3>
+
+      <div class="success-message" *ngIf="successMessage">✅ {{ successMessage }}</div>
+      <div class="error-message"   *ngIf="errorMessage">⚠️ {{ errorMessage }}</div>
+
+      <form (ngSubmit)="onSave()">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" [(ngModel)]="form.firstName" name="firstName" class="form-control" placeholder="Jean" />
+          </div>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" [(ngModel)]="form.lastName" name="lastName" class="form-control" placeholder="Dupont" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Nom d'utilisateur</label>
+          <input type="text" [(ngModel)]="form.username" name="username" class="form-control" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Taille (cm)</label>
+            <input type="number" [(ngModel)]="form.height" name="height" class="form-control" placeholder="175" min="100" max="250" />
+          </div>
+          <div class="form-group">
+            <label>Poids (kg)</label>
+            <input type="number" [(ngModel)]="form.weight" name="weight" class="form-control" placeholder="70" min="30" max="300" step="0.1" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" [disabled]="isSaving">
+            {{ isSaving ? 'Enregistrement...' : 'Sauvegarder' }}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Stats rapides -->
+    <div class="stats-row" *ngIf="user?.height || user?.weight">
+      <div class="stat-card" *ngIf="user?.height">
+        <span class="stat-icon">📏</span>
+        <span class="stat-val">{{ user?.height }} cm</span>
+        <span class="stat-lbl">Taille</span>
+      </div>
+      <div class="stat-card" *ngIf="user?.weight">
+        <span class="stat-icon">⚖️</span>
+        <span class="stat-val">{{ user?.weight }} kg</span>
+        <span class="stat-lbl">Poids</span>
+      </div>
+      <div class="stat-card" *ngIf="user?.height && user?.weight">
+        <span class="stat-icon">🧮</span>
+        <span class="stat-val">{{ getBmi() }}</span>
+        <span class="stat-lbl">IMC</span>
+      </div>
+    </div>
+
+    <!-- Zone danger RGPD -->
+    <div class="danger-zone">
+      <h3>⚠️ Zone de danger</h3>
+      <p>La suppression de votre compte est définitive et irréversible. Toutes vos données seront effacées conformément au RGPD.</p>
+      <button class="btn-danger" (click)="onDeleteAccount()">Supprimer mon compte</button>
+    </div>
+
+  </ng-container>
+</div>

@@ -19,6 +19,12 @@ import { GdprBannerComponent } from './shared/components/gdpr-banner/gdpr-banner
 // Legal
 import { PrivacyPolicyComponent } from './features/legal/privacy-policy/privacy-policy.component';
 
+// Profile
+import { ProfileComponent } from './features/profile/profile.component';
+
+// Not Found
+import { NotFoundComponent } from './features/not-found/not-found.component';
+
 // Auth
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
@@ -50,6 +56,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     GdprBannerComponent,
     // Legal
     PrivacyPolicyComponent,
+    // Profile
+    ProfileComponent,
+    // Not Found
+    NotFoundComponent,
     // Auth
     LoginComponent,
     RegisterComponent,

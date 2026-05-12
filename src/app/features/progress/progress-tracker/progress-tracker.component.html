@@ -79,6 +79,34 @@
       <button class="btn-primary" (click)="showForm = true">Ajouter ma première entrée</button>
     </div>
 
+    <!-- Graphique évolution du poids -->
+    <div class="chart-card" *ngIf="chartPoints.length >= 2">
+      <h3>📊 Évolution du poids</h3>
+      <div class="chart-wrap">
+        <svg [attr.viewBox]="'0 0 ' + chartW + ' ' + chartH" class="chart-svg" preserveAspectRatio="xMidYMid meet">
+          <!-- Grille horizontale -->
+          <g *ngFor="let lbl of chartYLabels">
+            <line [attr.x1]="padX" [attr.y1]="lbl.y" [attr.x2]="chartW - padX" [attr.y2]="lbl.y"
+                  stroke="rgba(245,197,24,0.08)" stroke-width="1"/>
+            <text [attr.x]="padX - 6" [attr.y]="lbl.y + 4" text-anchor="end"
+                  font-size="10" fill="#555">{{ lbl.label }}</text>
+          </g>
+          <!-- Zone remplie -->
+          <path [attr.d]="chartArea" fill="rgba(245,197,24,0.08)"/>
+          <!-- Courbe -->
+          <polyline [attr.points]="chartPolyline"
+                    fill="none" stroke="#f5c518" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Points -->
+          <g *ngFor="let pt of chartPoints">
+            <circle [attr.cx]="pt.x" [attr.cy]="pt.y" r="5"
+                    fill="#f5c518" stroke="#080808" stroke-width="2"/>
+            <title>{{ pt.weight }} kg — {{ pt.date | date:'dd/MM/yy' }}</title>
+          </g>
+        </svg>
+      </div>
+    </div>
+
     <!-- Tableau des entrées -->
     <div class="progress-table" *ngIf="progressList.length > 0">
       <div class="table-header">

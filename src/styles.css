@@ -143,3 +143,48 @@ html, body {
     padding: 1.5rem !important;
   }
 }
+
+/* =============================================
+   RESPONSIVE 375px — corrections spécifiques
+   ============================================= */
+
+@media (max-width: 375px) {
+  /* Header */
+  .logo-text { font-size: 1rem !important; letter-spacing: 1px !important; }
+
+  /* Dashboard hero */
+  .hero-banner { padding: 1.25rem !important; }
+  .hero-text h1 { font-size: 1.2rem !important; }
+  .btn-hero { padding: 0.6rem 1rem !important; font-size: 0.8rem !important; }
+
+  /* Stats grilles */
+  .stats-grid { grid-template-columns: 1fr !important; }
+  .shortcuts-grid { grid-template-columns: 1fr !important; }
+
+  /* Exercices */
+  .exercises-grid { grid-template-columns: 1fr !important; }
+  .filters-bar { flex-direction: column !important; }
+  .filter-select, .search-input, .btn-reset { width: 100% !important; }
+
+  /* Workouts */
+  .workout-card { flex-wrap: wrap !important; }
+  .workout-date-badge { min-width: 44px !important; }
+
+  /* Progress table */
+  .table-header, .table-row {
+    grid-template-columns: 90px 80px 70px 1fr 36px !important;
+    gap: 0.25rem !important;
+    font-size: 0.75rem !important;
+    padding: 0.6rem 0.5rem !important;
+  }
+
+  /* Auth pages */
+  .auth-card { padding: 1.5rem !important; }
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* Profil */
+  .stats-row { flex-direction: column !important; }
+
+  /* Workout create */
+  .exercise-row { grid-template-columns: 1fr 70px 70px 32px !important; }
+}

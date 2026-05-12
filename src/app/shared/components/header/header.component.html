@@ -1,5 +1,6 @@
 <header class="header">
   <div class="header-container">
+
     <!-- Logo -->
     <a routerLink="/dashboard" class="logo">
       <span class="logo-icon">💪</span>
@@ -8,23 +9,17 @@
 
     <!-- Navigation desktop -->
     <nav class="nav-desktop" *ngIf="currentUser">
-      <a routerLink="/dashboard" class="nav-link" [class.active]="isActive('/dashboard')">
-        🏠 Dashboard
-      </a>
-      <a routerLink="/exercises" class="nav-link" [class.active]="isActive('/exercises')">
-        🏋️ Exercices
-      </a>
-      <a routerLink="/workouts" class="nav-link" [class.active]="isActive('/workouts')">
-        📋 Séances
-      </a>
-      <a routerLink="/progress" class="nav-link" [class.active]="isActive('/progress')">
-        📈 Progrès
-      </a>
+      <a routerLink="/dashboard" class="nav-link" [class.active]="isActive('/dashboard')">🏠 Dashboard</a>
+      <a routerLink="/exercises" class="nav-link" [class.active]="isActive('/exercises')">🏋️ Exercices</a>
+      <a routerLink="/workouts"  class="nav-link" [class.active]="isActive('/workouts')">📋 Séances</a>
+      <a routerLink="/progress"  class="nav-link" [class.active]="isActive('/progress')">📈 Progrès</a>
     </nav>
 
     <!-- Utilisateur connecté -->
     <div class="header-right" *ngIf="currentUser">
-      <span class="user-name">{{ currentUser.firstName || currentUser.username }}</span>
+      <a routerLink="/profile" class="user-avatar" [title]="currentUser.username">
+        {{ (currentUser.firstName || currentUser.username || '?')[0].toUpperCase() }}
+      </a>
       <button class="btn-logout" (click)="logout()">Déconnexion</button>
     </div>
 
@@ -38,8 +33,9 @@
   <nav class="nav-mobile" [class.open]="menuOpen" *ngIf="currentUser">
     <a routerLink="/dashboard" class="nav-link" (click)="menuOpen = false">🏠 Dashboard</a>
     <a routerLink="/exercises" class="nav-link" (click)="menuOpen = false">🏋️ Exercices</a>
-    <a routerLink="/workouts" class="nav-link" (click)="menuOpen = false">📋 Séances</a>
-    <a routerLink="/progress" class="nav-link" (click)="menuOpen = false">📈 Progrès</a>
+    <a routerLink="/workouts"  class="nav-link" (click)="menuOpen = false">📋 Séances</a>
+    <a routerLink="/progress"  class="nav-link" (click)="menuOpen = false">📈 Progrès</a>
+    <a routerLink="/profile"   class="nav-link" (click)="menuOpen = false">👤 Profil</a>
     <button class="btn-logout" (click)="logout()">Déconnexion</button>
   </nav>
 </header>

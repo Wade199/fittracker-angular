@@ -18,13 +18,17 @@ import { ProgressTrackerComponent } from './features/progress/progress-tracker/p
 // Legal
 import { PrivacyPolicyComponent } from './features/legal/privacy-policy/privacy-policy.component';
 
+// Profile & 404
+import { ProfileComponent }  from './features/profile/profile.component';
+import { NotFoundComponent } from './features/not-found/not-found.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 
   // Routes publiques
-  { path: 'login',   component: LoginComponent },
+  { path: 'login',    component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'privacy', component: PrivacyPolicyComponent },
+  { path: 'privacy',  component: PrivacyPolicyComponent },
 
   // Routes protégées
   { path: 'dashboard',       component: DashboardComponent,       canActivate: [AuthGuard] },
@@ -34,8 +38,10 @@ const routes: Routes = [
   { path: 'workouts/create', component: WorkoutCreateComponent,   canActivate: [AuthGuard] },
   { path: 'workouts/:id',    component: WorkoutDetailComponent,   canActivate: [AuthGuard] },
   { path: 'progress',        component: ProgressTrackerComponent, canActivate: [AuthGuard] },
+  { path: 'profile',         component: ProfileComponent,         canActivate: [AuthGuard] },
 
-  { path: '**', redirectTo: '/dashboard' }
+  // 404
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
