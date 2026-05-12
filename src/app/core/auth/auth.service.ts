@@ -4,15 +4,6 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ApiService } from '../services/api.service';
 import { User, AuthResponse, LoginRequest, RegisterRequest } from '../../shared/models/user.model';
 
-/**
- * Service d'authentification — Sécurisé RGPD/Production
- *
- * Sécurité :
- * - Token JWT stocké en sessionStorage (effacé à la fermeture du navigateur)
- * - Données utilisateur minimales stockées (pas de données sensibles)
- * - Déconnexion automatique sur token expiré (401)
- * - Pas de mot de passe stocké côté client
- */
 @Injectable({
   providedIn: 'root'
 })
@@ -49,15 +40,43 @@ export class AuthService {
   }
 
   clearAllData(): void {
-    sessionStorage.clear();
     localStorage.clear();
     this.currentUserSubject.next(null);
+    this.router.navigate(['/login']);
   }
 
+  /**
+   * Vérifie si l'utilisateur est connecté.
+   * Retourne true si un token valide existe en localStorage.
+   * En cas de doute (token malformé), retourne false sans boucler.
+   */
   isLoggedIn(): boolean {
     const token = this.getToken();
-    if (!token) return false;
-    return !this.isTokenExpired(token);
+    if (!token || token.trim() === '') return false;
+
+    // Vérifie l'expiration seulement si le token a bien 3 parties
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      // Token malformé → nettoie et retourne false
+      localStorage.removeItem(this.TOKEN_KEY);
+      return false;
+    }
+
+    try {
+      // Décode le payload Base64
+      const b64 = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+      const payload = JSON.parse(atob(b64));
+
+      // Si pas de champ exp → considère valide (certains backends n'expirent pas)
+      if (!payload.exp) return true;
+
+      // Marge de 30 secondes pour éviter les faux positifs
+      return (payload.exp * 1000) > (Date.now() - 30000);
+    } catch {
+      // Erreur de décodage → token invalide, nettoie
+      localStorage.removeItem(this.TOKEN_KEY);
+      return false;
+    }
   }
 
   getToken(): string | null {
@@ -68,10 +87,6 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  /**
-   * Stocke uniquement les données nécessaires (principe de minimisation RGPD)
-   * Pas de données sensibles (pas de mot de passe, pas de données de santé brutes)
-   */
   private setSession(authResponse: AuthResponse): void {
     localStorage.setItem(this.TOKEN_KEY, authResponse.token);
     const safeUser = {
@@ -86,20 +101,12 @@ export class AuthService {
   }
 
   private getUserFromStorage(): User | null {
-    const userJson = localStorage.getItem(this.USER_KEY);
-    return userJson ? JSON.parse(userJson) : null;
-  }
-
-  /**
-   * Vérifie si le token JWT est expiré en décodant le payload
-   */
-  private isTokenExpired(token: string): boolean {
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      const expiry  = payload.exp * 1000; // convertit en ms
-      return Date.now() > expiry;
+      const userJson = localStorage.getItem(this.USER_KEY);
+      return userJson ? JSON.parse(userJson) : null;
     } catch {
-      return true; // token malformé = considéré expiré
+      localStorage.removeItem(this.USER_KEY);
+      return null;
     }
   }
 }

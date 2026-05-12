@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../core/auth/auth.service';
 import { LoginRequest } from '../../../shared/models/user.model';
 
-/**
- * Composant de connexion.
- * Formulaire email + mot de passe avec gestion des erreurs.
- */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,10 +15,22 @@ export class LoginComponent {
   isLoading = false;
   showPassword = false;
 
+  // URL vers laquelle rediriger après connexion (passée par AuthGuard)
+  private returnUrl = '/dashboard';
+
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    // Récupère l'URL de retour si elle existe
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+
+    // Si déjà connecté → redirige directement
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate([this.returnUrl]);
+    }
+  }
 
   onSubmit(): void {
     if (!this.credentials.email || !this.credentials.password) {
@@ -35,7 +43,7 @@ export class LoginComponent {
 
     this.authService.login(this.credentials).subscribe({
       next: () => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate([this.returnUrl]);
       },
       error: (err) => {
         this.isLoading = false;

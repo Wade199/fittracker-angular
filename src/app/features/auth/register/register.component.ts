@@ -30,7 +30,12 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    // Si déjà connecté → redirige vers dashboard
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 
   onSubmit(): void {
     // Validation

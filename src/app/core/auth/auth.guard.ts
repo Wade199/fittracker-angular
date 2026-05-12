@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, UrlTree } from '@angular/router';
+import { CanActivate, Router, UrlTree, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from './auth.service';
 
 /**
  * Guard de protection des routes.
  * Redirige vers /login si l'utilisateur n'est pas authentifié.
+ * Stocke l'URL demandée pour rediriger après connexion.
  */
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,13 @@ export class AuthGuard implements CanActivate {
     private router: Router
   ) {}
 
-  canActivate(): boolean | UrlTree {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
     if (this.authService.isLoggedIn()) {
       return true;
     }
-    // Redirige vers la page de login si non connecté
-    return this.router.createUrlTree(['/login']);
+    // Redirige vers login en passant l'URL demandée en paramètre
+    return this.router.createUrlTree(['/login'], {
+      queryParams: { returnUrl: state.url }
+    });
   }
 }

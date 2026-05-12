@@ -1,15 +1,14 @@
-<!-- Splash screen au démarrage -->
+<!-- Splash screen au démarrage — le router-outlet reste actif en dessous -->
 <app-splash-screen
   *ngIf="showSplash"
   (splashDone)="onSplashDone()">
 </app-splash-screen>
 
-<!-- App principale — visible après le splash -->
-<ng-container *ngIf="!showSplash">
+<!-- App principale — toujours présente, juste cachée pendant le splash -->
+<div [style.visibility]="showSplash ? 'hidden' : 'visible'">
   <app-header *ngIf="authService.isLoggedIn()"></app-header>
   <main class="main-content" [class.with-header]="authService.isLoggedIn()">
     <router-outlet></router-outlet>
   </main>
-  <!-- Bannière RGPD — affichée sur toutes les pages -->
   <app-gdpr-banner></app-gdpr-banner>
-</ng-container>
+</div>
