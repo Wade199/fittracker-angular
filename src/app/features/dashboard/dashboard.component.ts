@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../core/auth/auth.service';
 import { ApiService } from '../../core/services/api.service';
 import { User } from '../../shared/models/user.model';
-import { Workout } from '../../shared/models/workout.model';
+import { Workout, PagedResponse } from '../../shared/models/workout.model';
 
-/**
- * Composant Dashboard.
- * Affiche un résumé : dernières séances, statistiques rapides.
- */
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -17,11 +13,7 @@ export class DashboardComponent implements OnInit {
 
   currentUser: User | null = null;
   recentWorkouts: Workout[] = [];
-  stats = {
-    totalWorkouts: 0,
-    thisWeek: 0,
-    totalMinutes: 0
-  };
+  stats = { totalWorkouts: 0, thisWeek: 0, totalMinutes: 0 };
   isLoading = true;
 
   constructor(
@@ -35,9 +27,12 @@ export class DashboardComponent implements OnInit {
   }
 
   loadDashboardData(): void {
-    this.apiService.get<Workout[]>('/workouts').subscribe({
-      next: (workouts) => {
-        this.recentWorkouts = workouts.slice(0, 5); // 5 dernières séances
+    // Le backend renvoie une réponse paginée {content: [...], totalElements: N, ...}
+    this.apiService.get<PagedResponse<Workout> | Workout[]>('/workouts').subscribe({
+      next: (response) => {
+        // Gère les deux formats : paginé et tableau simple
+        const workouts = this.extractWorkouts(response);
+        this.recentWorkouts = workouts.slice(0, 5);
         this.computeStats(workouts);
         this.isLoading = false;
       },
@@ -47,19 +42,31 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  /**
+   * Extrait le tableau de workouts quelle que soit la structure de réponse
+   */
+  private extractWorkouts(response: PagedResponse<Workout> | Workout[]): Workout[] {
+    if (Array.isArray(response)) {
+      return response;
+    }
+    // Réponse paginée Spring : { content: [...] }
+    if (response && (response as PagedResponse<Workout>).content) {
+      return (response as PagedResponse<Workout>).content;
+    }
+    return [];
+  }
+
   private computeStats(workouts: Workout[]): void {
     this.stats.totalWorkouts = workouts.length;
     this.stats.totalMinutes = workouts.reduce((sum, w) => sum + (w.duration || 0), 0);
 
-    // Séances de la semaine courante
     const now = new Date();
     const startOfWeek = new Date(now);
     startOfWeek.setDate(now.getDate() - now.getDay());
     startOfWeek.setHours(0, 0, 0, 0);
 
     this.stats.thisWeek = workouts.filter(w => {
-      const d = new Date(w.workoutDate);
-      return d >= startOfWeek;
+      return new Date(w.workoutDate) >= startOfWeek;
     }).length;
   }
 

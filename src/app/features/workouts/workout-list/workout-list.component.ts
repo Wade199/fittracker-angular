@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
-import { Workout } from '../../../shared/models/workout.model';
+import { Workout, PagedResponse } from '../../../shared/models/workout.model';
 
-/**
- * Composant liste des séances d'entraînement.
- * Affiche toutes les séances de l'utilisateur connecté.
- */
 @Component({
   selector: 'app-workout-list',
   templateUrl: './workout-list.component.html',
@@ -24,9 +20,10 @@ export class WorkoutListComponent implements OnInit {
   }
 
   loadWorkouts(): void {
-    this.apiService.get<Workout[]>('/workouts').subscribe({
-      next: (data) => {
-        // Tri par date décroissante
+    // Le backend renvoie une réponse paginée {content: [...]} ou un tableau simple
+    this.apiService.get<PagedResponse<Workout> | Workout[]>('/workouts').subscribe({
+      next: (response) => {
+        const data = this.extractWorkouts(response);
         this.workouts = data.sort((a, b) =>
           new Date(b.workoutDate).getTime() - new Date(a.workoutDate).getTime()
         );
@@ -39,10 +36,20 @@ export class WorkoutListComponent implements OnInit {
     });
   }
 
+  /**
+   * Extrait le tableau quelle que soit la structure de réponse
+   */
+  private extractWorkouts(response: PagedResponse<Workout> | Workout[]): Workout[] {
+    if (Array.isArray(response)) return response;
+    if (response && (response as PagedResponse<Workout>).content) {
+      return (response as PagedResponse<Workout>).content;
+    }
+    return [];
+  }
+
   deleteWorkout(id: number, event: Event): void {
     event.preventDefault();
     event.stopPropagation();
-
     if (!confirm('Supprimer cette séance ?')) return;
 
     this.apiService.delete(`/workouts/${id}`).subscribe({

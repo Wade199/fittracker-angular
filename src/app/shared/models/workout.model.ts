@@ -53,6 +53,20 @@ export interface WorkoutCreateRequest {
   exercises: { exerciseId: number; sets: number; reps: number }[];
 }
 
+/**
+ * Réponse paginée du backend Spring (Page<T>)
+ * Le backend renvoie {content: [...], page: 0, size: 10, totalElements: N, ...}
+ */
+export interface PagedResponse<T> {
+  content: T[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  first: boolean;
+  last: boolean;
+}
+
 export interface Progress {
   id?: number;
   userId?: number;
