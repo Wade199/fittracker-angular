@@ -21,7 +21,7 @@ COPY . .
 RUN npm run build -- --configuration production
 
 # ── STAGE 2 : Serve avec Nginx ───────────────
-FROM nginx:1.25-alpine AS production
+FROM nginx:1.31-alpine AS production
 
 # Supprime la config Nginx par défaut
 RUN rm -rf /usr/share/nginx/html/*
