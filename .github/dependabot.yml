@@ -1,0 +1,35 @@
+# Dependabot : mises à jour de dépendances et alertes de sécurité.
+version: 2
+updates:
+  # Paquets npm (package.json / package-lock.json)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      # Correctifs et mineures regroupés ; les majeures d'Angular restent séparées
+      # (elles se migrent avec `ng update`, une version majeure à la fois)
+      npm-minor-and-patch:
+        update-types: ["minor", "patch"]
+
+  # Images Docker du Dockerfile (node, nginx)
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "chore(deps)"
+
+  # Images Docker du docker-compose.yml (postgres)
+  - package-ecosystem: "docker-compose"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "chore(deps)"
