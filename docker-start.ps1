@@ -21,8 +21,19 @@ if (-not (Test-Path $backendDockerfile)) {
 # Étape 2 : Créer le .env si pas encore fait
 if (-not (Test-Path ".env")) {
     Write-Host "📋 Création du fichier .env..." -ForegroundColor Cyan
-    Copy-Item ".env.example" ".env"
-    Write-Host "✅ .env créé (modifie les mots de passe si besoin)" -ForegroundColor Green
+    # Secrets générés aléatoirement : jamais de valeur par défaut publique
+    function New-RandomSecret([int]$bytes) {
+        $buf = New-Object byte[] $bytes
+        [System.Security.Cryptography.RandomNumberGenerator]::Create().GetBytes($buf)
+        return [Convert]::ToBase64String($buf)
+    }
+    $dbPassword = New-RandomSecret 24
+    $jwtSecret  = New-RandomSecret 64
+    $content = (Get-Content ".env.example" -Raw) `
+        -replace '(?m)^DB_PASSWORD=.*$', "DB_PASSWORD=$dbPassword" `
+        -replace '(?m)^JWT_SECRET=.*$',  "JWT_SECRET=$jwtSecret"
+    Set-Content -Path ".env" -Value $content -Encoding UTF8
+    Write-Host "✅ .env créé avec des secrets aléatoires (ne le commite jamais)" -ForegroundColor Green
 }
 
 # Étape 3 : Build et lancement
@@ -47,7 +58,7 @@ Write-Host ""
 Write-Host "✅ FitTracker est lancé !" -ForegroundColor Green
 Write-Host "   Frontend : http://localhost" -ForegroundColor White
 Write-Host "   Backend  : http://localhost:8080/api" -ForegroundColor White
-Write-Host "   Database : localhost:5432" -ForegroundColor White
+Write-Host "   Database : interne au réseau Docker (non exposée)" -ForegroundColor White
 Write-Host ""
 Write-Host "Pour arrêter : docker compose down" -ForegroundColor Gray
 Write-Host "Pour les logs : docker compose logs -f" -ForegroundColor Gray
