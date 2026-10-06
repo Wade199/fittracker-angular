@@ -15,6 +15,19 @@ updates:
       # (elles se migrent avec `ng update`, une version majeure à la fois)
       npm-minor-and-patch:
         update-types: ["minor", "patch"]
+    # Angular 16 est épinglé : ces paquets se migrent ensemble avec `ng update`, une majeure à la fois.
+    # Une PR isolée (ex. @angular/compiler 22 avec un cœur en 16) casse `npm ci` et le build.
+    ignore:
+      - dependency-name: "@angular/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular-devkit/*"
+        update-types: ["version-update:semver-major"]
+      # Versions 0.x : une mineure peut être incompatible (Angular 16 attend zone.js ~0.13 ou ~0.14)
+      - dependency-name: "zone.js"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      # Angular 16 exige TypeScript 5.1.x
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
 
   # Images Docker du Dockerfile (node, nginx)
   - package-ecosystem: "docker"
@@ -24,6 +37,10 @@ updates:
       day: "monday"
     commit-message:
       prefix: "chore(deps)"
+    ignore:
+      # Node : Angular 16 ne tourne que sur Node 16 ou 18 ; à revoir avec la migration Angular
+      - dependency-name: "node"
+        update-types: ["version-update:semver-major"]
 
   # Images Docker du docker-compose.yml (postgres)
   - package-ecosystem: "docker-compose"
@@ -33,3 +50,7 @@ updates:
       day: "monday"
     commit-message:
       prefix: "chore(deps)"
+    ignore:
+      # PostgreSQL : un volume créé en 16 ne démarre pas en 18 (migration pg_upgrade/dump nécessaire)
+      - dependency-name: "postgres"
+        update-types: ["version-update:semver-major"]
